@@ -22,5 +22,15 @@ class MovieCSpider(CrawlSpider):
             '//*[@id="content"]/div[1]/div[2]/div[1]/h3/a[1]/text()').extract()
         item['movie_score'] = response.xpath(
             '//*[@id="actualPointPersentBasic"]/div/span/span/text()').extract()
+        item['movi_content'] = response.xpath(
+            '//*[@id="content"]/div[1]/div[4]/div[1]/div/div/p/text()').extract()
+        item['movie_maker'] = response.xpath(
+            '//*[@id="content"]/div[1]/div[2]/div[1]/dl/dd[2]/p/a/text()').extract()
+        item['movie_actor'] = list(response.xpath(
+            '//*[@id="content"]/div[1]/div[2]/div[1]/dl/dd[3]/p/a/text()').extract())
+        item['reple_score'] = list(response.xpath(
+            '//*[@id="content"]/div[1]/div[4]/div[5]/div[2]/div[4]/ul/li/div[1]/em/text()').extract())
+        item['reple_content'] = list(response.xpath(
+            '//*[@id="content"]/div[1]/div[4]/div[5]/div[2]/div[4]/ul/li/div[2]/p/text()').extract())
 
         return item
