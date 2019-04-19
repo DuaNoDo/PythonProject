@@ -6,34 +6,34 @@ from scrapy.spiders import CrawlSpider, Rule
 
 class MovieCSpider(CrawlSpider):
     name = 'movie_c'
-    allowed_domains = ['movie.naver.com']
-    start_urls = ['https://movie.naver.com/movie/running/current.nhn']
+    allowed_domains = ['www.cgv.co.kr']
+    start_urls = ['http://www.cgv.co.kr/movies/finder.aspx?s=true&sdate=1960&edate=2020&page=1']
 
     rules = (
-        Rule(LinkExtractor(allow=r'/movie/bi/mi/basic\.nhn\?code=*'), callback='parse_item', follow=True),
-        Rule(LinkExtractor(allow=r'/movie/bi/mi/point\.nhn\?code=*'), callback='parse_item', follow=True),
-        Rule(LinkExtractor(allow=r'/movie/bi/mi/detail\.nhn\?code=*'), callback='parse_item', follow=True)
+        Rule(LinkExtractor(allow=r'/movies/detail-view/\?midx=*'), callback='parse_item', follow=True),
+        Rule(LinkExtractor(allow=r'/movies/detail-view/\?midx=*'))
     )
 
     def parse_item(self, response):
         item = {}
         item['movie_img'] = list(response.xpath(
-            '//*[@id="content"]/div[1]/div[2]/div[2]/a/img').xpath("@src").extract())[0]
-        item['movie_title'] = response.xpath(
-            '//*[@id="content"]/div[1]/div[2]/div[1]/h3/a[1]/text()').extract()
-        item['movie_title_e'] = response.xpath(
-            '//*[@id="content"]/div[1]/div[1]/div[2]/h3/strong/text()').extract()
-        item['movie_score'] = response.xpath(
-            '//*[@id="actualPointPersentBasic"]/div/span/span/text()').extract()
-        item['movi_content'] = response.xpath(
-            '//*[@id="content"]/div[1]/div[4]/div[1]/div/div[1]/p/text()').extract()
-        item['movie_maker'] = list(response.xpath(
-            '//*[@id="content"]/div[1]/div[2]/div[1]/dl/dd[2]/p/a/text()').extract())
+            '//*[@id="select_main"]/div[2]/div[1]/a/span/img').xpath("@src").extract())[0]
+        item['movie_name'] = response.xpath(
+            '//*[@id="select_main"]/div[2]/div[2]/div[1]/strong/text()').extract()
+        item['movie_name_e'] = response.xpath(
+            '//*[@id="select_main"]/div[2]/div[2]/div[1]/p/text()').extract()
+        item['movie_content'] = response.xpath(
+            '//*[@id="menu"]/div[1]/div[1]/div/text()').extract()
+        item['movie_director'] = list(response.xpath(
+            '//*[@id="select_main"]/div[2]/div[2]/div[3]/dl/dd[1]/a/text()').extract())
         item['movie_actor'] = list(response.xpath(
-            '//*[@id="content"]/div[1]/div[2]/div[1]/dl/dd[3]/p/a/text()').extract())
-        item['reple_score'] = list(response.xpath(
-            '//*[@id="content"]/div[1]/div[4]/div[5]/div[2]/div[4]/ul/li/div[1]/em/text()').extract())
-        item['reple_content'] = list(response.xpath(
-            '//*[@id="content"]/div[1]/div[4]/div[5]/div[2]/div[4]/ul/li/div[2]/p/text()').extract())
+            '//*[@id="select_main"]/div[2]/div[2]/div[3]/dl/dd[3]/a/text()').extract())
+        item['movie_cate'] = response.xpath(
+            '//*[@id="select_main"]/div[2]/div[2]/div[3]/dl/dt[4]/text()').extract()
+
+        item['movie_age'] = response.xpath('//*[@id="select_main"]/div[2]/div[2]/div[3]/dl/dd[5]/text()').extract()
+
+        item['movie_date'] = response.xpath(
+            '//*[@id="select_main"]/div[2]/div[2]/div[3]/dl/dt[6]/text()').extract()
 
         return item

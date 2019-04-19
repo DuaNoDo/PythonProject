@@ -7,7 +7,7 @@ class ItemCrawlSpider(CrawlSpider):
     name = '11street_crawl'
     allowed_domains = ['www.11st.co.kr']
 
-    def __init__(self, keyword=None, *args, **kwargs):
+    def __init__(self, keyword='cpu', *args, **kwargs):
         super(ItemCrawlSpider, self).__init__(*args, **kwargs)
         keyword.replace(' ','+')
         self.start_urls = ['http://search.11st.co.kr/Search.tmall?kwd=%s#pageNum##\d' %keyword]
@@ -25,7 +25,6 @@ class ItemCrawlSpider(CrawlSpider):
         i = {}
         i['item_img'] = list(response.xpath(
             '//*[@id="thumb"]/div[1]/span/img').xpath("@src").extract())[0]
-        print(i['item_img'])
         i['item_title'] = response.xpath(
             '//*[@id="productInfoMain"]/div[2]/div[2]/h2/text()').extract()
         i['item_price'] = response.xpath(

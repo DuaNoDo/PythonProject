@@ -16,10 +16,10 @@ class ItemCrawlSpider(CrawlSpider):
 
     rules = (
         Rule(
-            LinkExtractor(allow=r'info/\?pcode=*'),
+            LinkExtractor(allow=r'info\/\?pcode=*'),
             callback='parse_item',
             follow=True),
-        Rule(LinkExtractor(allow=r'info/\?pcode=*'))
+        Rule(LinkExtractor(allow=r'info\/\?pcode=*'))
     )
 
     def parse_item(self, response):
