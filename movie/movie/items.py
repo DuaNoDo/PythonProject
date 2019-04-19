@@ -11,6 +11,7 @@ import scrapy
 class MovieItem(scrapy.Item):
     movie_img = scrapy.Field()
     movie_title = scrapy.Field()
+    movie_title_e=scrapy.Field()
     movie_score = scrapy.Field()
     movie_content=scrapy.Field()
     movie_maker=scrapy.Field()
