@@ -22,18 +22,26 @@ class MovieCSpider(CrawlSpider):
             '//*[@id="select_main"]/div[2]/div[2]/div[1]/strong/text()').extract()
         item['movie_name_e'] = response.xpath(
             '//*[@id="select_main"]/div[2]/div[2]/div[1]/p/text()').extract()
-        item['movie_content'] = response.xpath(
-            '//*[@id="menu"]/div[1]/div[1]/div/text()').extract()
         item['movie_director'] = list(response.xpath(
             '//*[@id="select_main"]/div[2]/div[2]/div[3]/dl/dd[1]/a/text()').extract())
         item['movie_actor'] = list(response.xpath(
             '//*[@id="select_main"]/div[2]/div[2]/div[3]/dl/dd[3]/a/text()').extract())
         item['movie_cate'] = response.xpath(
-            '//*[@id="select_main"]/div[2]/div[2]/div[3]/dl/dt[4]/text()').extract()
-
-        item['movie_age'] = response.xpath('//*[@id="select_main"]/div[2]/div[2]/div[3]/dl/dd[5]/text()').extract()
-
+            '//*[@id="select_main"]/div[2]/div[2]/div[3]/dl/dt[3]/text()').extract()
+        item['movie_age'] = response.xpath(
+            '//*[@id="select_main"]/div[2]/div[2]/div[3]/dl/dd[5]/text()').extract()
         item['movie_date'] = response.xpath(
             '//*[@id="select_main"]/div[2]/div[2]/div[3]/dl/dt[6]/text()').extract()
+
+        item['movie_content1'] = response.xpath(
+            '//*[@id="menu"]/div[1]/div[1]/*/text()').extract()
+        item['movie_content2'] = response.xpath(
+            '//*[@id="menu"]/div[1]/div[1]/div/*/text()').extract()
+        item['movie_content3'] = response.xpath(
+            '//*[@id="menu"]/div[1]/div[1]/*//text()').extract()
+        item['movie_content4'] = response.xpath(
+            '//*[@id="menu"]/div[1]/div[1]//text()').extract()
+        item['movie_content5'] = response.xpath(
+            '//*[@id="menu"]/div[1]/div[1]//*//text()').extract()
 
         return item
