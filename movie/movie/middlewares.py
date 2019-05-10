@@ -1,11 +1,16 @@
-# -*- coding: utf-8 -*-
-
-# Define here the models for your spider middleware
-#
-# See documentation in:
-# https://doc.scrapy.org/en/latest/topics/spider-middleware.html
-
 from scrapy import signals
+from scrapy.http import HtmlResponse
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+path = 'C:/Users/won/Desktop/PythonProject/chromedriver.exe'
+options = webdriver.ChromeOptions()
+# options.add_argument('headless')
+options.add_argument('window-size=1200x600')
+
+driver = webdriver.Chrome(chrome_options=options, executable_path=path)
 
 
 class MovieSpiderMiddleware(object):
@@ -69,16 +74,29 @@ class MovieDownloaderMiddleware(object):
         return s
 
     def process_request(self, request, spider):
-        # Called for each request that goes through the downloader
-        # middleware.
+        if request.url != 'http://www.megabox.co.kr/?menuId=movie':
+            return None
 
-        # Must either:
-        # - return None: continue processing this request
-        # - or return a Response object
-        # - or return a Request object
-        # - or raise IgnoreRequest: process_exception() methods of
-        #   installed downloader middleware will be called
-        return None
+        driver.get(request.url)
+        for i in range(0, 5):
+            driver.find_element_by_xpath('//*[@id="moreMovieList"]').click()
+            driver.implicitly_wait(5)
+
+        movie_list = driver.find_element_by_xpath('//*[@id="movieList"]').find_elements_by_tag_name('li')
+        print("-------------------------------------------------------------------------------------------------------")
+        print(movie_list)
+        print("-------------------------------------------------------------------------------------------------------")
+
+        for num in range(0, len(movie_list) ):
+            element = driver.find_element_by_xpath('//*[@id="movieList"]/li[' + str(num + 2) + ']/div[2]/div[2]/h3/a')
+            driver.execute_script("arguments[0].click();", element)
+            driver.implicitly_wait(5)
+
+            exitel = driver.find_element_by_xpath('//*[@id="movie_detail"]/div/div/button')
+            driver.execute_script("arguments[0].click();", exitel)
+            driver.implicitly_wait(5)
+
+        return HtmlResponse(driver.current_url, body=driver.page_source, encoding='utf-8', request=request)
 
     def process_response(self, request, response, spider):
         # Called with the response returned from the downloader.

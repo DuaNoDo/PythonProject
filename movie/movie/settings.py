@@ -52,9 +52,9 @@ ROBOTSTXT_OBEY = False
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'movie.middlewares.MovieDownloaderMiddleware': 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+    'movie.middlewares.MovieDownloaderMiddleware': 543,
+}
 
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
@@ -65,7 +65,7 @@ ROBOTSTXT_OBEY = False
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    'movie.pipelines.MoviePipeline': 300,
+#    'movie.pipelines.MoviePipeline': 300,f
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
