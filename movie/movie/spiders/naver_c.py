@@ -17,6 +17,9 @@ class NaverCSpider(CrawlSpider):
     )
 
     def parse_item(self, response):
+        print("-------------------------------------------------------------------------------------------------------")
+        print(response)
+        print("-------------------------------------------------------------------------------------------------------")
         item = {}
         item['movie_img'] = list(response.xpath('//*[@id="content"]/div[1]/div[2]/div[2]/a/img').xpath("@src").extract())[0]
         item['movie_title'] = response.xpath( '//*[@id="content"]/div[1]/div[2]/div[1]/h3/a[1]/text()').extract()

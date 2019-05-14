@@ -31,4 +31,5 @@ class MegaboxCSpider(CrawlSpider):
         #    '//*[@id="movieCommentList"]/div/div[1]/div[1]/div[2]/p/span/text()').extract())
         # item['movie_site'] = 'megabox'
 
+
         return item

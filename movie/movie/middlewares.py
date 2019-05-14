@@ -4,6 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import sqlite3
 
 path = 'C:/Users/won/Desktop/PythonProject/chromedriver.exe'
 options = webdriver.ChromeOptions()
@@ -78,37 +79,49 @@ class MovieDownloaderMiddleware(object):
             return None
 
         driver.get(request.url)
-        for i in range(0, 5):
-            driver.find_element_by_xpath('//*[@id="moreMovieList"]').click()
-            driver.implicitly_wait(100)
+        more_button=driver.find_element_by_xpath('//*[@id="moreMovieList"]')
+
+        # while more_button:
+        #     more_button.click()
+        #     driver.implicitly_wait(50)
+        #
+        #     print("-------------------------------------------------------------------------------------------------------")
+        #     print(more_button)
+        #     print("-------------------------------------------------------------------------------------------------------")
+        for i in range(0,3):
+            more_button.click()
+            driver.implicitly_wait(50)
+
 
         movie_list = driver.find_element_by_xpath('//*[@id="movieList"]').find_elements_by_tag_name('li')
-        print("-------------------------------------------------------------------------------------------------------")
-        print(movie_list)
-        print("-------------------------------------------------------------------------------------------------------")
+        # print("-------------------------------------------------------------------------------------------------------")
+        # print(movie_list)
+        # print("-------------------------------------------------------------------------------------------------------")
         responseList=[]
 
         #for num in range(0, len(movie_list) ):
         for num in range(0, 5):
-            element = driver.find_element_by_xpath('//*[@id="movieList"]/li[' + str(num + 2) + ']/div[2]/div[2]/h3/a')
+            element = driver.find_element_by_xpath('//*[@id="movieList"]/li[' + str(num + 2) + ']/div[1]/div[2]/a')
             driver.execute_script("arguments[0].click();", element)
             driver.implicitly_wait(100)
 
-            responseList.append(HtmlResponse(driver.current_url, body=driver.page_source, encoding='utf-8', request=request))
+            responseList.append(
+                HtmlResponse(driver.current_url, body=driver.page_source, encoding='utf-8', request=request))
 
             exitel = driver.find_element_by_xpath('//*[@id="movie_detail"]/div/div/button')
             driver.execute_script("arguments[0].click();", exitel)
             driver.implicitly_wait(100)
-            r =  HtmlResponse(driver.current_url, body=driver.page_source, encoding='utf-8', request=request)
+            r = HtmlResponse(driver.current_url, body=driver.page_source, encoding='utf-8', request=request)
             # print("input: ", r)
             # return r
 
-        #
+            #
             # responseList.append(HtmlResponse(driver.current_url, body=driver.page_source, encoding='utf-8', request=request))
-        # print("-------------------------------------------------------------------------------------------------------")
-        # print(responseList)
-        # print("-------------------------------------------------------------------------------------------------------")
+            # print("-------------------------------------------------------------------------------------------------------")
+            # print(responseList)
+            # print("-------------------------------------------------------------------------------------------------------")
         return None
+
 
     def process_response(self, request, response, spider):
         # Called with the response returned from the downloader.
