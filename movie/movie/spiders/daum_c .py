@@ -47,6 +47,12 @@ class DaumCSpider(CrawlSpider):
             '//*[@id="mArticle"]/div[2]/div[2]/div[1]/div[1]/div[2]/div/div[1]/a/em/text()').extract()
         item['movie_content'] = response.xpath(
             '//*[@id="mArticle"]/div[2]/div[2]/div[1]/div[1]/div[3]/p/text()').extract()
+        item['reple_score']=list(response.xpath(
+            '//*[@id="mainGradeDiv"]/ul/li[1]/div/div[1]/em/text()').extract())
+        item['reple_content']=list(response.xpath(
+            '//*[@id="mainGradeDiv"]/ul/li[1]/div/p').extract())
+
+        item['movie_site']='daum'
 
 
         return item

@@ -43,5 +43,5 @@ class MovieCSpider(CrawlSpider):
             '//*[@id="menu"]/div[1]/div[1]//text()').extract()
         item['movie_content5'] = response.xpath(
             '//*[@id="menu"]/div[1]/div[1]//*//text()').extract()
-
+        item['movie_site'] = 'cgv'
         return item
