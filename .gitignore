@@ -9,7 +9,7 @@ instance/*
 
 ### Flask.Python Stack ###
 # Byte-compiled / optimized / DLL files
-__pycache__/
+**/__pycache__/**
 *.py[cod]
 *$py.class
 
@@ -269,3 +269,6 @@ fabric.properties
 # Pyre type checker
 
 # End of https://www.gitignore.io/api/flask,python,pycharm
+
+*.csv
+*.json
