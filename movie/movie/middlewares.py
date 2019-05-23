@@ -95,7 +95,7 @@ class MovieDownloaderMiddleware(object):
                 driver.execute_script("arguments[0].click();", element)
                 driver.implicitly_wait(3000)
 
-                spider.addResponse(
+                spider.addInfoResponse(
                     HtmlResponse(driver.current_url, body=driver.page_source, encoding='utf-8', request=request))
 
                 exitel = driver.find_element_by_xpath('//*[@id="movie_detail"]/div/div/button')
@@ -114,8 +114,8 @@ class MovieDownloaderMiddleware(object):
 
 
             page_list=driver.find_element_by_xpath('//*[@id="pagingForm"]/div/ul').find_elements_by_tag_name('li')
-            for i in range(1, len(page_list)):
-
+            #for i in range(1, len(page_list)):
+            for i in range(1,5):
                 movie_table = driver.find_element_by_xpath(
                     '//*[@id="content"]/div[4]/table/tbody').find_elements_by_tag_name('tr')
                 print(
