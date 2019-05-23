@@ -19,21 +19,26 @@ class MegaboxCSpider(CrawlSpider):
         for response in self.responseList:
             item = {}
             # item["movie_name"] = "123"
+            item['movie_code']= response.xpath(
+                '//*[@id="ui-id-3"]/div/div[1]/div[2]/dl/dd[1]/text()').extract()
             item['movie_img'] = list(response.xpath(
-                '//*[@id="movieDetail"]/div[1]/div[1]/img').xpath("@src").extract())[0]
+                '//*[@id="ui-id-3"]/div/div[1]/div[2]/a/img').xpath("@src").extract())[0]
             item['movie_name'] = response.xpath(
-                '//*[@id="movieDetail"]/div[1]/div[2]/div[1]/h2/span/text()').extract()
+                '//*[@id="ui-id-3"]/div/div[1]/div[2]/dl/dd[3]/text()').extract()
             item['movie_title_e'] = response.xpath(
-                '//*[@id="movieDetail"]/div[1]/div[2]/div[1]/p/text()').extract()
-            item['movie_score'] = response.xpath(
-                '//*[@id="averageScoreDetail_015422"]/text()').extract()
+                '/html/body/div[3]/div[1]/div[1]/div/text()').extract()
+            item['movie_date'] = response.xpath(
+                '//*[@id="ui-id-3"]/div/div[1]/div[2]/dl/dd[5]/text()').extract()
+            item['movie_info'] = response.xpath(
+                '//*[@id="ui-id-3"]/div/div[1]/div[2]/dl/dd[4]/text()').extract()
+            item['movie_director'] = response.xpath(
+                '//*[@id="20199954_director"]/dd/a/text()').extract()
+            item['movie_actor']=list(response.xpath(
+                '//*[@id="20199954_staff"]/dl/div[2]/dd/table/tbody/tr/td/a/text()').extract())
             item['movi_content'] = response.xpath(
-                '//*[@id="movieDetail"]/div[2]/div/text()').extract()
-            item['reple_score'] = list(response.xpath(
-                '//*[@id="movieCommentList"]/div/div[1]/div/div[2]/div[2]/div/span/span/span/text()').extract())
-            item['reple_content'] = list(response.xpath(
-                '//*[@id="movieCommentList"]/div/div[1]/div/div[2]/p/span/text()').extract())
-            item['movie_site'] = 'megabox'
-            itemList.append(item)
+                '//*[@id="ui-id-3"]/div/div[1]/div[5]/p/text()').extract()
+
+
+
 
         return itemList
