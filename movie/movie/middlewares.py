@@ -75,33 +75,67 @@ class MovieDownloaderMiddleware(object):
         return s
 
     def process_request(self, request, spider):
-        if request.url != 'http://www.megabox.co.kr/?menuId=movie':
-            return None
+        if request.url == 'http://www.megabox.co.kr/?menuId=movie':
 
-        driver.get(request.url)
-        more_button = driver.find_element_by_xpath('//*[@id="moreMovieList"]')
+            driver.get(request.url)
+            more_button = driver.find_element_by_xpath('//*[@id="moreMovieList"]')
 
-        for i in range(0, 6):
-            more_button.click()
-            driver.implicitly_wait(3000)
+            for i in range(0, 6):
+                more_button.click()
+                driver.implicitly_wait(3000)
 
-        movie_list = driver.find_element_by_xpath('//*[@id="movieList"]').find_elements_by_tag_name('li')
-        print("-------------------------------------------------------------------------------------------------------")
-        print(movie_list)
-        print("-------------------------------------------------------------------------------------------------------")
+            movie_list = driver.find_element_by_xpath('//*[@id="movieList"]').find_elements_by_tag_name('li')
+            print("-------------------------------------------------------------------------------------------------------")
+            print(movie_list)
+            print("-------------------------------------------------------------------------------------------------------")
 
-        for num in range(0, len(movie_list)-1 ):
+            for num in range(0, len(movie_list)-1 ):
 
-            element = driver.find_element_by_xpath('//*[@id="movieList"]/li[' + str(num + 2) + ']/div[1]/div[2]/a')
-            driver.execute_script("arguments[0].click();", element)
-            driver.implicitly_wait(3000)
+                element = driver.find_element_by_xpath('//*[@id="movieList"]/li[' + str(num + 2) + ']/div[1]/div[2]/a')
+                driver.execute_script("arguments[0].click();", element)
+                driver.implicitly_wait(3000)
 
-            spider.addResponse(
-                HtmlResponse(driver.current_url, body=driver.page_source, encoding='utf-8', request=request))
+                spider.addResponse(
+                    HtmlResponse(driver.current_url, body=driver.page_source, encoding='utf-8', request=request))
 
-            exitel = driver.find_element_by_xpath('//*[@id="movie_detail"]/div/div/button')
-            driver.execute_script("arguments[0].click();", exitel)
-            driver.implicitly_wait(3000)
+                exitel = driver.find_element_by_xpath('//*[@id="movie_detail"]/div/div/button')
+                driver.execute_script("arguments[0].click();", exitel)
+                driver.implicitly_wait(3000)
+
+        #이부분 부터는 추가해줄 인터넷 진흥원 부분이다.
+        if request.url=='http://www.kobis.or.kr/kobis/business/mast/mvie/searchMovieList.do':
+            driver.get(request.url)
+            # more_button = driver.find_element_by_xpath('//*[@id="moreMovieList"]')
+            #
+            # for i in range(0, 6):
+            #     more_button.click()
+            #     driver.implicitly_wait(3000)
+
+
+
+            page_list=driver.find_element_by_xpath('//*[@id="pagingForm"]/div/ul').find_elements_by_tag_name('li')
+            for i in range(1, len(page_list)):
+
+                movie_table = driver.find_element_by_xpath(
+                    '//*[@id="content"]/div[4]/table/tbody').find_elements_by_tag_name('tr')
+                print(
+                    "-------------------------------------------------------------------------------------------------------")
+                print(len(movie_table))
+                print(
+                    "-------------------------------------------------------------------------------------------------------")
+                for num in range(1, len(movie_table)):
+                    element = driver.find_element_by_xpath('//*[@id="content"]/div[4]/table/tbody/tr['+str(num)+']/td[1]/span/a')
+                    driver.execute_script("arguments[0].click();", element)
+                    driver.implicitly_wait(3000)
+
+                    spider.addResponse(
+                        HtmlResponse(driver.current_url, body=driver.page_source, encoding='utf-8', request=request))
+
+                    exitel = driver.find_element_by_xpath('/html/body/div[3]/div[1]/div[1]/a[2]/span')
+                    driver.execute_script("arguments[0].click();", exitel)
+                    driver.implicitly_wait(3000)
+
+                driver.execute_script('goPage('+str(i+1)+');return false;')
         return None
 
     def process_response(self, request, response, spider):
