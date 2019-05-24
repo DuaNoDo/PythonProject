@@ -115,7 +115,7 @@ class MovieDownloaderMiddleware(object):
 
             page_list=driver.find_element_by_xpath('//*[@id="pagingForm"]/div/ul').find_elements_by_tag_name('li')
             #for i in range(1, len(page_list)):
-            for i in range(0,2):
+            for i in range(0,1):
                 movie_table = driver.find_element_by_xpath(
                     '//*[@id="content"]/div[4]/table/tbody').find_elements_by_tag_name('tr')
                 print(
