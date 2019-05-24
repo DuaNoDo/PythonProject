@@ -1,0 +1,40 @@
+// --------------------------
+// Set-up styles
+// --------------------------
+* { box-sizing: border-box; }
+body { background: slategray; margin: 0; padding: 3em 1em;}
+ul { list-style: none; margin: 0; padding: 0;}
+figure { margin: 0; }
+figcaption { font-style: italic; font-size: 0.8em; color: grey; line-height: 1.4; }
+
+// --------------------------
+// Grid styles
+// --------------------------
+.grid {
+  display: grid;
+  grid-auto-flow: column; // display the items in columns only, ie horizontal
+  grid-auto-columns: 90%; // create as many columns as there are items. 90% so we can see next item on the right.
+  grid-gap: 1em;
+  overflow-x: scroll; // scroll only within the grid, not entire page
+  -webkit-overflow-scrolling: touch; // better scrolling on touch
+  padding: 2em 1em;
+  background: white;
+
+  @media all and (min-width: 600px) {
+    grid-auto-flow: initial; // default: display items in rows and cols
+    grid-template-columns: repeat(auto-fit, minmax(auto,20em)); // as many columns with max-width of 20em;
+    justify-content: center; // center the items - this is optional
+  }
+
+  &__figure {
+    display: grid;
+    grid-template-rows: 15em 1fr; // 15em high row for image – value could be whatever
+    grid-gap: 1em;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; // crop image within its cell
+    }
+  }
+}
