@@ -17,13 +17,14 @@ class MoviePipeline(object):
         self.connection = sqlite3.connect('../movie.db')
         self.cursor = self.connection.cursor()
 
-    def store_data(self, name, dire, rep, score, site):
+    def store_rep(self, name, dire, rep, score, site):
         try:
 
-            result=self.cursor.execute('''select Mov_code from Mov_info where Mov_name_kor=? and Mov_director like "%?%";''')
+            result=self.cursor.execute('''select Mov_code from Mov_info where Mov_name_kor=? and Mov_director like "%?%";''',(str(name),str(dire)))
+            code=result.fetchone()
             self.cursor.execute(
-                '''insert into Mov_score (Mov_code, Mov_name_kor, Mov_director,Rep_cont,Rep_score,Rep_site, Add_date) values (?,?,?,?,?,?, datetime())''',
-                (str(result[0]), self.strclean(str(name)), str(dire), str(rep), str(score), str(site)))
+                '''insert into Mov_score (Mov_code, Rep_cont,Rep_score,Rep_site, Add_date) values (?,?,?,?, datetime())''',
+                (str(code), str(rep), str(score), str(site)))
 
             self.connection.commit()
             print(
@@ -50,5 +51,5 @@ class MoviePipeline(object):
                string)
         return string
     def process_item(self, item, spider):
-        pass
+        self.store_rep(item['movie_name'],item['movie_director'], item['reple_score'],item['reple_content'])
         return item
