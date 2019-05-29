@@ -122,7 +122,7 @@ class MovieDownloaderMiddleware(object):
             driver.execute_script("goPage('1');return false;")
             driver.implicitly_wait(3000)
             page_list = driver.find_element_by_xpath('//*[@id="pagingForm"]/div/ul').find_elements_by_tag_name('li')
-            for i in range(1, 6989):
+            for i in range(1, 1552):
                 print("page :", i)
                 for num in range(1, 10):
                     element = driver.find_element_by_xpath(
