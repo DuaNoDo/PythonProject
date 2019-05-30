@@ -3,12 +3,14 @@ import scrapy
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 import sqlite3
+import re
 
 class MovieCSpider(CrawlSpider):
     name = 'movie_c'
     allowed_domains = ['www.cgv.co.kr']
     start_urls = ['http://www.cgv.co.kr/movies/finder.aspx?s=true&sdate=1960&edate=2020&page=1']
-
+    connection = sqlite3.connect('../movie.db')
+    cursor = connection.cursor()
     rules = (
         Rule(LinkExtractor(allow=r'/movies/detail-view/\?midx=*'), callback='parse_item', follow=True),
         Rule(LinkExtractor(allow=r'/movies/detail-view/\?midx=*'))
@@ -44,15 +46,35 @@ class MovieCSpider(CrawlSpider):
         item['movie_content5'] = response.xpath(
             '//*[@id="menu"]/div[1]/div[1]//*//text()').extract()
         item['movie_site'] = 'cgv'
+
+        for i in range(0, len(item['reple_score'])):
+            self.store_rep(item['movie_title'], item['movie_director'], item['reple_content'][i],
+                           item['reple_score'][i],
+                           item['movie_site'])
         return item
     def store_rep(self, name, dire, rep, score, site):
         try:
 
-            result=self.cursor.execute('''select Mov_code from Mov_info where Mov_name_kor=? and Mov_director like "%?%";''',(str(name),str(dire)))
-            code=result.fetchone()
-            self.cursor.execute(
-                '''insert into Mov_score (Mov_code, Rep_cont,Rep_score,Rep_site, Add_date) values (?,?,?,?, datetime())''',
-                (str(code), str(rep), str(score), str(site)))
+
+            name=name[0]
+            name=self.strclean(name)
+            dire=dire[0]
+            print(
+                "-------------------------------------------------------------------------------------------------------")
+            print(dire)
+            print(
+                "-------------------------------------------------------------------------------------------------------")
+            result = self.cursor.execute(
+                '''select Mov_code from Mov_info where Mov_name_kor=? and Mov_director like  '%' ||?|| '%';''',
+                (name, dire))
+            # result = self.cursor.execute(
+            #     "select Mov_code from Mov_info where Mov_name_kor=?",[name])
+            code = result.fetchone()
+            print(code)
+            if code:
+                self.cursor.execute(
+                    '''insert into Mov_score (Mov_code, Rep_cont,Rep_score,Rep_site, Add_date) values (?,?,?,?, datetime())''',
+                    (str(code[0]), str(rep), str(score), str(site)))
 
             self.connection.commit()
             print(
@@ -65,3 +87,8 @@ class MovieCSpider(CrawlSpider):
         except sqlite3.IntegrityError:
             print('키가 중복되는게 있당.')
             pass
+
+
+    def strclean(self, stri):
+        str = re.sub('\s', '', stri)
+        return str
