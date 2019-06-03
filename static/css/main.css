@@ -680,7 +680,7 @@ ul {
   position: relative;
   display: block;
   background-color: #2b2b31;
-  padding: 40px 0;
+  padding: 40px 20px 0px 0px;
 }
 .home .container {
   position: relative;
@@ -703,6 +703,7 @@ ul {
   font-weight: 300;
   font-size: 28px;
   margin: 0;
+  margin-bottom:35px;
   padding-right: 70px;
 }
 .home__title b {
@@ -1031,7 +1032,7 @@ ul {
 	Section
 ==============================*/
 .section {
-  padding: 40px 0;
+  padding: 40px 0px 0px 40px;
   position: relative;
 }
 .section__title {
@@ -1257,22 +1258,61 @@ ul {
   left: 0;
   right: 0;
   bottom: 0;
+  /*
   background-image: -moz-linear-gradient(90deg, #ff55a5 0%, #ff5860 100%);
   background-image: -webkit-linear-gradient(90deg, #ff55a5 0%, #ff5860 100%);
   background-image: -ms-linear-gradient(90deg, #ff55a5 0%, #ff5860 100%);
   background-image: linear-gradient(90deg, #ff55a5 0%, #ff5860 100%);
+  */
   z-index: 1;
   opacity: 0;
   -webkit-transition: 0.4s ease;
   -moz-transition: 0.4s ease;
   transition: 0.4s ease;
 }
-.card__cover:hover {
-  -webkit-box-shadow: 0 0 20px 0 rgba(255,88,96,0.5);
-  box-shadow: 0 0 20px 0 rgba(255,88,96,0.5);
+.card__cover:hover {/*
+  -webkit-box-shadow: 0 50px 50px 0 rgba(255,88,96,0.5);
+  box-shadow: 0 50px 50px 0 rgba(255,88,96,0.5);
+  */
+  transform: scale(1.5);
+  -webkit-transform: scale(1.5);
+  -moz-transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  -o-transform: scale(1.5);
+
 }
+/* SIBLING FADE: fade out siblings around a hovered item */
+
+.sibling-fade { visibility: hidden; }
+/* Prevents :hover from triggering in the gaps between items */
+
+.sibling-fade > * { visibility: visible; }
+/* Brings the child items back in, even though the parent is `hidden` */
+
+.sibling-fade > * { transition: opacity 150ms linear 100ms, transform 150ms ease-in-out 100ms;
+}
+/* Makes the fades smooth with a slight delay to prevent jumps as the mouse moves between items */
+
+.sibling-fade:hover > * {
+ filter:blur(3px);
+  opacity:.5;
+  transform: scale(.98);
+  box-shadow:none;}
+/* Fade out all items when the parent is hovered */
+
+.sibling-fade > *:hover { transform:scale(1);
+  filter:blur(0px);
+  opacity:1;
+  box-shadow:0 8px 20px 0px rgba(0,0,0,0.125); transition-delay: 0ms, 0ms; }
+/* Fade in the currently hovered item */
+
+
+
+
 .card__cover:hover:before {
   opacity: 0.65;
+
+}
 }
 .card__cover:hover .card__play {
   opacity: 1;
@@ -1303,6 +1343,7 @@ ul {
 }
 .card__play:hover {
   color: #fff;
+
 }
 .card__content {
   position: relative;
@@ -1319,6 +1360,7 @@ ul {
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   word-wrap: break-word;
+
 }
 .card__title a {
   color: #fff;
@@ -1345,7 +1387,7 @@ ul {
   font-family: 'Open Sans', sans-serif;
 }
 .card__category a:after {
-  content: ',';
+  content: '';
   position: absolute;
   display: block;
   left: 100%;
@@ -1512,7 +1554,7 @@ ul {
     font-size: 20px;
     line-height: 24px;
     margin-bottom: 5px;
-    margin-top: -4px;
+    margin-top: -1px;
   }
   .card--list .card__rate {
     margin-top: 0;
@@ -2490,8 +2532,9 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .comments__autor {
   display: block;
   position: relative;
-  padding-left: 55px;
-  margin-bottom: 15px;
+  padding-left: 0;
+  margin-bottom: 0;
+  width:100%;
 }
 .comments__avatar {
   position: absolute;
@@ -2512,7 +2555,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   display: block;
   font-size: 13px;
   color: rgba(255,255,255,0.5);
-  line-height: 20px;
+  line-height: 25px;
   font-weight: 300;
   font-family: 'Open Sans', sans-serif;
 }
@@ -2560,11 +2603,11 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 .comments__actions {
   display: flex;
-  flex-direction: row;
+  flex-direction: inherit;
   justify-content: flex-end;
   align-items: center;
   background-color: #28282d;
-  padding: 15px 20px;
+  padding: 5px 20px;
   border-top: 1px solid rgba(255,255,255,0.05);
   position: relative;
 }
@@ -2659,6 +2702,30 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     margin-bottom: 45px;
   }
 }
+
+.comments__rating {
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  position: absolute;
+  display: inline-flex;
+  flex-direction: inherit;
+  justify-content: flex-start;
+  align-items: center;
+  right: 10px;
+  top: 0;
+}
+.comments__rating i {
+  text-shadow: 0 0 6px rgba(255,88,96,0.5);
+  margin-right: 5px;
+}
+.comments__rating i:before {
+  background-image: -webkit-linear-gradient(0deg, #ff55a5 0%, #ff5860 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #ff5860;
+}
+
 /*==============================
 	Reviews
 ==============================*/
@@ -2668,7 +2735,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .reviews__autor {
   display: block;
   position: relative;
-  padding-left: 55px;
+  padding-left: 10px;
   margin-bottom: 15px;
   padding-right: 60px;
 }
@@ -2722,7 +2789,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  right: 0;
+  right: 10px;
   top: 8px;
 }
 .reviews__rating i {
@@ -2744,6 +2811,97 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   .reviews {
     margin-bottom: 30px;
   }
+}
+
+.reviews__actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #28282d;
+  padding: 15px 20px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  position: relative;
+}
+.reviews__actions button {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  margin-right: 20px;
+  height: 22px;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+.reviews__actions button i {
+  margin-right: 5px;
+}
+.reviews__actions button:hover {
+  color: #ff55a5;
+}
+.reviews__actions button:last-child {
+  margin-right: 0;
+}
+.reviews__rate {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  margin-top: -15px;
+}
+.reviews__rate button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: rgba(255,255,255,0.5);
+  font-size: 13px;
+  margin-right: 25px;
+  position: relative;
+  height: 30px;
+}
+.reviews__rate button i {
+  font-size: 18px;
+  opacity: 0.5;
+  -webkit-transition: 0.4s ease;
+  -moz-transition: 0.4s ease;
+  transition: 0.4s ease;
+}
+.reviews__rate button:last-child {
+  margin-right: 0;
+}
+.reviews__rate button:last-child i {
+  margin-left: 6px;
+  color: #c22b3c;
+}
+.reviews__rate button:first-child i {
+  margin-right: 6px;
+  color: #0cb457;
+}
+.reviews__rate button:first-child:before {
+  content: '';
+  position: absolute;
+  display: block;
+  left: 100%;
+  margin-left: 12px;
+  width: 1px;
+  height: 15px;
+  background-color: rgba(255,255,255,0.05);
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.reviews__rate button:hover {
+  color: rgba(255,255,255,0.5);
+}
+.reviews__rate button:hover i {
+  opacity: 1;
 }
 /*==============================
 	Form
@@ -3711,3 +3869,169 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   background-image: -ms-linear-gradient(180deg, #ff55a5 0%, #ff5860 100%);
   background-image: linear-gradient(180deg, #ff55a5 0%, #ff5860 100%);
 }
+
+/*마우스 오버*/
+
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,700);
+@import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
+figure.snip1384 {
+  font-family: 'Raleway', Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+  min-width: 150px;
+  max-width: 235px;
+  width: 100%;
+  color: #ffffff;
+  text-align: left;
+  font-size: 16px;
+  background-color: #000000;
+
+}
+figure.snip1384 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+figure.snip1384 img {
+  max-width: 100%;
+  backface-visibility: hidden;
+  vertical-align: top;
+  margin-top:-5%;
+  margin-bottom:-5%;
+}
+figure.snip1384:after,
+figure.snip1384 figcaption {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+figure.snip1384:after {
+  content: '';
+  background-color: rgba(0, 0, 0, 0.65);
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+  opacity: 0;
+}
+figure.snip1384 figcaption {
+  z-index: 1;
+  padding: 15px;
+}
+figure.snip1384 h3,
+figure.snip1384 .links {
+  width: 100%;
+  margin: 5px 0;
+  padding: 0;
+}
+figure.snip1384 h3 {
+  line-height: 1.1em;
+  font-weight: 700;
+  font-size: 0.7em;
+  text-transform: uppercase;
+  opacity: 0;
+  margin-bottom:10px;
+}
+
+figure.snip1384 p {
+  font-size: 0.1em;
+  font-weight: 30;
+  letter-spacing: 1px;
+  opacity: 0;
+  top: 50%;
+  -webkit-transform: translateY(40px);
+  transform: translateY(40px);
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* 라인수 */
+  -webkit-box-orient: vertical;
+  word-wrap:break-word;
+  line-height: 1.2em;
+  height: 2.4em;
+
+}
+figure.snip1384 i {
+  font-size: 0.3em;
+  font-weight: 50;
+  letter-spacing: 1px;
+  opacity: 0;
+  top: 50%;
+  -webkit-transform: translateY(40px);
+  transform: translateY(40px);
+  margin-bottom:10px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* 라인수 */
+  -webkit-box-orient: vertical;
+  word-wrap:break-word;
+  line-height: 1.2em;
+  height: 3.6em;
+}
+figure.snip1384 a {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+figure.snip1384:hover img,
+figure.snip1384.hover img {
+  zoom: 1;
+  filter: alpha(opacity=100);
+  -webkit-opacity: 1;
+  opacity: 1;
+}
+figure.snip1384:hover:after,
+figure.snip1384.hover:after {
+  opacity: 1;
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  left: 5px;
+  right: 5px;
+}
+figure.snip1384:hover h3,
+figure.snip1384.hover h3,
+figure.snip1384:hover p,
+figure.snip1384.hover p,
+figure.snip1384:hover i,
+figure.snip1384.hover i{
+  -webkit-transform: translate(0px, 0px);
+  transform: translate(0px, 0px);
+  opacity: 1;
+}
+
+.mov_title{
+height:15%;
+
+}
+
+.mov_info{
+
+height:25%;
+}
+
+.mov_content{
+height:30%;
+
+}
+
+.mov_date{
+height:15%;
+}
+
+.mov_score{
+height:15%;
+}
+
+a:link {text-decoration:none; color:#fff;}
+a:visited {text-decoration:none; color:#fff;}
+a:active {text-decoration:none; color:#fff;}
+a:hover {text-decoration:none; color:#fff;}

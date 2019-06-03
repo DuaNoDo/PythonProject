@@ -481,3 +481,4 @@ $(document).ready(function () {
 	}
 	$(window).on('load', initializeThirdSlider());
 });
+
