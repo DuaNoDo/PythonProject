@@ -1,22 +1,14 @@
 import sqlite3
 
-from flask import Flask, render_template
-from flask_paginate import Pagination, get_page_args
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
-
-app.template_folder = ''
-movs = list(range(100))
 
 app.debug = True
 
 
 def get_db_con() -> sqlite3.connect:
     return sqlite3.connect("movie.db")
-
-
-def get_movs(offset=0, per_page=10):
-    return movs[offset: offset + per_page]
 
 
 @app.route("/")
@@ -56,7 +48,9 @@ def index():
                                mov_info_ani=mov_info_ani)
 
 
-@app.route('/catalog')
+@app.route('/catalog/')
+@app.route('/catalog', methods=['POST', 'GET'])
+@app.route('/catalog/', methods=['POST', 'GET'])
 def catalog():
     with get_db_con() as con:
         cur = con.cursor()
@@ -88,18 +82,13 @@ def catalog():
 
         url = 'http://www.kobis.or.kr/'
 
-        page, per_page, offset = get_page_args(page_parameter='page',
-                                               per_page_parameter='per_page')
-        total = len(movs)
-        pagination_movs = get_movs(offset=offset, per_page=per_page)
-        pagination = Pagination(page=page, per_page=per_page, total=total,
-                                css_framework='bootstrap4')
+        total_all = 'select count(*) from mov_info'
+        total_all = cur.execute(total_all)
+        total_all = int(total_all.fetchone()[0])
 
         return render_template('catalog.html', mov_info_all=mov_info_all, url=url, mov_info_action=mov_info_action,
                                mov_info_romance=mov_info_romance, mov_info_horror=mov_info_horror,
-                               mov_info_ani=mov_info_ani, movs=pagination_movs,
-                               page=page, per_page=per_page, pagination=pagination, )
-
+                               mov_info_ani=mov_info_ani, total_all=total_all, )
 
 @app.route('/details')
 @app.route('/details/<int:mov_code>/')
@@ -142,5 +131,6 @@ def jsonize(result):
     result_json=json.dumps(list(result.fetchall()),ensure_ascii=False).encode("utf-8")
     return result_json
 '''
+
 if __name__ == "__main__":
     app.run()
