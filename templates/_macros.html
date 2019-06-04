@@ -3,6 +3,7 @@
     <ul class="pagination">
         {% for p in pages %}
         <li class="page-item {{p['class']}}">
+
             <a href="{{ url_for(endpoint, page = p['href'], **kwargs) }}"
                 class="page-link"
                 aria-label={{p['page']}}>

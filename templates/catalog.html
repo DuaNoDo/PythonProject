@@ -8,8 +8,13 @@
 
     <!-- Font -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600%7CUbuntu:300,400,500,700" rel="stylesheet">
+   <!-- {%- block styles %}
+    &lt;!&ndash; Bootstrap &ndash;&gt;
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.cs" crossorigin="anonymous">
+    {%- endblock styles %}-->
 
     <!-- CSS -->
+    <link rel="stylesheet" href="../static/css/pagingbutton.css">
     <link rel="stylesheet" href="../static/css/bootstrap-reboot.min.css">
     <link rel="stylesheet" href="../static/css/bootstrap-grid.min.css">
     <link rel="stylesheet" href="../static/css/owl.carousel.min.css">
@@ -348,12 +353,13 @@
             {% endfor %}
 
 
-            <!-- paginator -->
-            <div class="col-12">
+
+        </div>
+        <!-- paginator -->
+            <div class="col">
                 {{ macros.pagination_widget(pages, 'catalog') }}
             </div>
             <!-- end paginator -->
-        </div>
     </div>
 </div>
 <!-- end catalog -->
@@ -432,6 +438,7 @@
     </div>
 </footer>
 <!-- end footer -->
+
 
 <!-- JS -->
 <script src="../static/js/jquery-3.3.1.min.js"></script>
