@@ -1,12 +1,6 @@
 from scrapy import signals
 from scrapy.http import HtmlResponse
 from selenium import webdriver
-<<<<<<< HEAD
-
-path = 'C:/Users/won/Desktop/PythonProject/chromedriver.exe'
-options = webdriver.ChromeOptions()
-#options.add_argument('headless')
-=======
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -14,8 +8,7 @@ import sqlite3
 
 path = 'C:/Users/won/Desktop/PythonProject/chromedriver.exe'
 options = webdriver.ChromeOptions()
-# options.add_argument('headless')
->>>>>>> origin/Dail
+#options.add_argument('headless')
 options.add_argument('window-size=1200x600')
 
 driver = webdriver.Chrome(chrome_options=options, executable_path=path)
@@ -82,13 +75,12 @@ class MovieDownloaderMiddleware(object):
         return s
 
     def process_request(self, request, spider):
-<<<<<<< HEAD
         if request.url == 'http://www.megabox.co.kr/?menuId=movie':
 
             driver.get(request.url)
             more_button = driver.find_element_by_xpath('//*[@id="moreMovieList"]')
 
-            for i in range(0, 6):
+            for i in range(0, 8):
                 more_button.click()
                 driver.implicitly_wait(3000)
 
@@ -120,63 +112,34 @@ class MovieDownloaderMiddleware(object):
             #     more_button.click()
             #     driver.implicitly_wait(3000)
 
-            driver.find_element_by_xpath('//*[@id="sPrdtYearS"]/option[98]').click()
+            driver.find_element_by_xpath('//*[@id="sPrdtYearS"]/option[100]').click()
             driver.implicitly_wait(1000)
             driver.find_element_by_xpath('//*[@id="sPrdtYearE"]/option[103]').click()
             driver.implicitly_wait(1000)
             driver.find_element_by_xpath('//*[@id="searchForm"]/div[1]/div[5]/button[1]').click()
             driver.implicitly_wait(1000)
 
-            driver.execute_script("goPage('1');return false;")
-            driver.implicitly_wait(3000)
+            driver.execute_script("goPage('669');return false;")
+            driver.implicitly_wait(1000)
             page_list = driver.find_element_by_xpath('//*[@id="pagingForm"]/div/ul').find_elements_by_tag_name('li')
-            for i in range(1, 6989):
+            for i in range(669, 767):
                 print("page :", i)
                 for num in range(1, 10):
                     element = driver.find_element_by_xpath(
                         '//*[@id="content"]/div[4]/table/tbody/tr[' + str(num) + ']/td[1]/span/a')
                     driver.execute_script("arguments[0].click();", element)
-                    driver.implicitly_wait(3000)
+                    driver.implicitly_wait(1000)
 
                     spider.addInfoResponse(
                         HtmlResponse(driver.current_url, body=driver.page_source, encoding='utf-8', request=request))
 
                     exitel = driver.find_element_by_xpath('/html/body/div[3]/div[1]/div[1]/a[2]/span')
                     driver.execute_script("arguments[0].click();", exitel)
-                    driver.implicitly_wait(3000)
+                    driver.implicitly_wait(1000)
 
                 driver.execute_script("goPage('" + str(i + 1) + "');return false;")
-                driver.implicitly_wait(3000)
+                driver.implicitly_wait(1000)
 
-=======
-        if request.url != 'http://www.megabox.co.kr/?menuId=movie':
-            return None
-
-        driver.get(request.url)
-        more_button = driver.find_element_by_xpath('//*[@id="moreMovieList"]')
-
-        for i in range(0, 6):
-            more_button.click()
-            driver.implicitly_wait(3000)
-
-        movie_list = driver.find_element_by_xpath('//*[@id="movieList"]').find_elements_by_tag_name('li')
-        print("-------------------------------------------------------------------------------------------------------")
-        print(movie_list)
-        print("-------------------------------------------------------------------------------------------------------")
-
-        for num in range(0, len(movie_list)-1 ):
-
-            element = driver.find_element_by_xpath('//*[@id="movieList"]/li[' + str(num + 2) + ']/div[1]/div[2]/a')
-            driver.execute_script("arguments[0].click();", element)
-            driver.implicitly_wait(3000)
-
-            spider.addResponse(
-                HtmlResponse(driver.current_url, body=driver.page_source, encoding='utf-8', request=request))
-
-            exitel = driver.find_element_by_xpath('//*[@id="movie_detail"]/div/div/button')
-            driver.execute_script("arguments[0].click();", exitel)
-            driver.implicitly_wait(3000)
->>>>>>> origin/Dail
         return None
 
     def process_response(self, request, response, spider):

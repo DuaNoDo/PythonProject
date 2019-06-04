@@ -90,10 +90,7 @@ def catalog():
                                mov_info_romance=mov_info_romance, mov_info_horror=mov_info_horror,
                                mov_info_ani=mov_info_ani, total_all=total_all, )
 
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/Dail
 @app.route('/details')
 @app.route('/details/<int:mov_code>/')
 @app.route('/details/<int:mov_code>')
@@ -137,8 +134,5 @@ def jsonize(result):
 '''
 
 if __name__ == "__main__":
-<<<<<<< HEAD
     app.run()
-=======
-    app.run()
->>>>>>> origin/Dail
+
