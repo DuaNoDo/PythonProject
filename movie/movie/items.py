@@ -9,11 +9,17 @@ import scrapy
 
 
 class MovieItem(scrapy.Item):
+<<<<<<< HEAD
     movie_code=scrapy.Field()
     movie_img = scrapy.Field()
     movie_name = scrapy.Field()
     movie_name_e = scrapy.Field()
     movie_info=scrapy.Field()
+=======
+    movie_img = scrapy.Field()
+    movie_name = scrapy.Field()
+    movie_name_e = scrapy.Field()
+>>>>>>> origin/Dail
     movie_director = scrapy.Field()
     movie_actor = scrapy.Field()
     movie_cate = scrapy.Field()
