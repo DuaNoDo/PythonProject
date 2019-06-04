@@ -32,8 +32,13 @@ class MegaboxCSpider(CrawlSpider):
             '//*[@id="movieCommentList"]/div/div[1]/div/div[2]/p/span/text()').extract())
         item['reple_date'] = list(response.xpath(
             '//*[@id="movieCommentList"]/div/div[1]/div/div[2]/div[2]/span/text()').extract())
-        item['movie_site'] = 'megabox'
 
+        item['movie_site'] = 'megabox'
+        print(
+            "-------------------------------------------------------------------------------------------------------")
+        print(item['reple_score'] )
+        print(
+            "-------------------------------------------------------------------------------------------------------")
         for i in range(0, len(item['reple_score'])):
             self.store_rep(item['movie_name'], item['movie_director'], item['reple_content'][i],
                            item['reple_score'][i],
@@ -91,7 +96,7 @@ class MegaboxCSpider(CrawlSpider):
             if code:
                 self.cursor.execute(
                     '''insert into Mov_score (Mov_code, Rep_cont,Rep_score,Rep_site,Rep_date, Add_date) values (?,?,?,?,?, datetime())''',
-                    (str(code[0]), str(rep), str(score[3]), str(site), str(date)))
+                    (str(code[0]), str(rep), str(score[2]), str(site), str(date)))
 
             self.connection.commit()
 

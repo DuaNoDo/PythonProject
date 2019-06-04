@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +32,7 @@
     <meta name="keywords" content="">
     <meta name="author" content="Dmitry Volkov">
     <title>FlixGo – Online Movies, TV Shows & Cinema HTML Template</title>
-
+    {% import "_macros.html" as macros %}
 </head>
 <body class="body">
 
@@ -318,20 +319,20 @@
                 <div class="card">
                     <div class="card__cover">
                         <figure class="snip1384">
-                            <img src={{url}}{{mov_info_all[i][9]}} alt="">
-                            <a href=/details/{{mov_info_all[i][11]}}>
+                            <img src={{url}}{{data_to_show[i][9]}} alt="">
+                            <a href=/details/{{data_to_show[i][11]}}>
                                 <figcaption>
                                     <div class="mov_title">
-                                        <h3 class="card__title">{{mov_info_all[i][0]}}</h3>
+                                        <h3 class="card__title">{{data_to_show[i][0]}}</h3>
                                     </div>
                                     <div class="mov_info">
-                                        <p>{{mov_info_all[i][12]}}</p>
+                                        <p>{{data_to_show[i][12]}}</p>
                                     </div>
                                     <div class="mov_content">
-                                        <i>{{mov_info_all[i][8]}}</i>
+                                        <i>{{data_to_show[i][8]}}</i>
                                     </div>
                                     <div class="mov_date">
-                                        <p>{{mov_info_all[i][2]}} 개봉</p>
+                                        <p>{{data_to_show[i][2]}} 개봉</p>
                                     </div>
                                     <div class="mov_score">
                                         <p class="icon ion-ios-star"> 8.4 / 10</p>
@@ -349,21 +350,7 @@
 
             <!-- paginator -->
             <div class="col-12">
-
-                <ul class="paginator">
-                    <li class="paginator__item paginator__item--prev">
-                        <a href="#"><i class="icon ion-ios-arrow-back"></i></a>
-                    </li>
-                    <li class="paginator__item paginator__item--active"><a href="#">1</a></li>
-                    <li class="paginator__item"><a href="#">2</a></li>
-                    <li class="paginator__item"><a href="#">3</a></li>
-                    <li class="paginator__item"><a href="#">4</a></li>
-                    <li class="paginator__item"><a href="#">{{total_all}}</a></li>
-                    <li class="paginator__item paginator__item--next">
-                        <a href="#"><i class="icon ion-ios-arrow-forward"></i></a>
-                    </li>
-                </ul>
-
+                {{ macros.pagination_widget(pages, 'catalog') }}
             </div>
             <!-- end paginator -->
         </div>

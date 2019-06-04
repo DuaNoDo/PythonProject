@@ -80,7 +80,7 @@ class MovieDownloaderMiddleware(object):
             driver.get(request.url)
             more_button = driver.find_element_by_xpath('//*[@id="moreMovieList"]')
 
-            for i in range(0, 8):
+            for i in range(0, 5):
                 more_button.click()
                 driver.implicitly_wait(3000)
 
