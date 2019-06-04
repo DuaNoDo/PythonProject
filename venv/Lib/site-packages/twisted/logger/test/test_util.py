@@ -11,7 +11,6 @@ from .._observer import LogPublisher
 from .._util import formatTrace
 
 
-
 class UtilTests(unittest.TestCase):
     """
     Utility tests.

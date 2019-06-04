@@ -10,8 +10,8 @@ from time import time
 
 from twisted.python.compat import currentframe
 from twisted.python.failure import Failure
-from ._levels import InvalidLogLevelError, LogLevel
 
+from ._levels import InvalidLogLevelError, LogLevel
 
 
 class Logger(object):

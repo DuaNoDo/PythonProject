@@ -36,9 +36,9 @@ here.
 import os
 import platform
 import sys
-
 from distutils.command import build_ext
 from distutils.errors import CompileError
+
 from setuptools import Extension, find_packages
 from setuptools.command.build_py import build_py
 

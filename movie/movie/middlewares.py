@@ -1,10 +1,6 @@
 from scrapy import signals
 from scrapy.http import HtmlResponse
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-import sqlite3
 
 path = 'C:/Users/won/Desktop/PythonProject/chromedriver.exe'
 options = webdriver.ChromeOptions()

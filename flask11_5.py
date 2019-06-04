@@ -1,7 +1,8 @@
-from flask import request
-from flask import Flask
-import sqlite3
 import json
+import sqlite3
+
+from flask import Flask
+from flask import request
 
 app=Flask(__name__)
 

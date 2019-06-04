@@ -9,11 +9,11 @@ import os
 import shutil
 import tempfile
 
-from twisted.trial import unittest
 from twisted.internet.protocol import Protocol
+from twisted.internet.test.test_serialport import DoNothing
 from twisted.python.failure import Failure
 from twisted.python.runtime import platform
-from twisted.internet.test.test_serialport import DoNothing
+from twisted.trial import unittest
 
 try:
     from twisted.internet import serialport

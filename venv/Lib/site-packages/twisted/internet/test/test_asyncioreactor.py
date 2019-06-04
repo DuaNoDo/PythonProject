@@ -6,6 +6,7 @@ Tests for L{twisted.internet.asyncioreactor}.
 """
 
 from twisted.trial.unittest import SynchronousTestCase
+
 from .reactormixins import ReactorBuilder
 
 try:

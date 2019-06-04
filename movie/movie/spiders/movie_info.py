@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
-import scrapy
 import re
-from scrapy.linkextractors import LinkExtractor
-from scrapy.spiders import CrawlSpider, Rule
-from selenium import webdriver
-import selenium
 import sqlite3
+
+from scrapy.spiders import CrawlSpider
 
 
 class MovieInfoSpider(CrawlSpider):

@@ -22,7 +22,6 @@ from twisted.test.proto_helpers import MemoryReactor
 from twisted.trial.unittest import TestCase
 
 
-
 class OptionsTests(TestCase):
     """
     Tests for L{parseOptions} which parses command line arguments and reads

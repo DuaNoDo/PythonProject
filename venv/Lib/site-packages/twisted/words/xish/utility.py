@@ -13,6 +13,7 @@ from twisted.python import log
 from twisted.python.compat import iteritems
 from twisted.words.xish import xpath
 
+
 class _MethodWrapper(object):
     """
     Internal class for tracking method calls.

@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-import scrapy
-from scrapy.linkextractors import LinkExtractor
-from scrapy.spiders import CrawlSpider, Rule
-from selenium import webdriver
-import selenium
+from scrapy.spiders import CrawlSpider
 
 
 class MegaboxCSpider(CrawlSpider):

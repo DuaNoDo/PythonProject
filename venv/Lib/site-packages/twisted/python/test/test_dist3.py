@@ -8,11 +8,11 @@ Tests for L{twisted.python.dist3}.
 from __future__ import absolute_import, division
 
 import os
-import twisted
 
-from twisted.trial.unittest import TestCase
-from twisted.python.compat import _PY3
+import twisted
 from twisted.python._setup import notPortedModules
+from twisted.python.compat import _PY3
+from twisted.trial.unittest import TestCase
 
 
 class ModulesToInstallTests(TestCase):

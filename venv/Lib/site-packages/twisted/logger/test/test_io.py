@@ -11,11 +11,10 @@ import sys
 
 from twisted.trial import unittest
 
+from .._io import LoggingFile
 from .._levels import LogLevel
 from .._logger import Logger
 from .._observer import LogPublisher
-from .._io import LoggingFile
-
 
 
 class LoggingFileTests(unittest.TestCase):
