@@ -23,22 +23,22 @@ def index():
         mov_info_all = cur.execute(mov_info_all)
         mov_info_all = list(mov_info_all.fetchall())
 
-        action = "select * from mov_info where mov_info like '%액션%' order by mov_date desc"
+        action = "select * from mov_info where mov_info like '%'|| '액션' ||'%' order by mov_date desc"
 
         mov_info_action = cur.execute(action.format('action'))
         mov_info_action = list(mov_info_action.fetchall())
 
-        romance = "select * from mov_info where mov_info like '%로맨스%' order by mov_date desc"
+        romance = "select * from mov_info where mov_info like '%'|| '로맨스' ||'%' order by mov_date desc"
 
         mov_info_romance = cur.execute(romance.format('romance'))
         mov_info_romance = list(mov_info_romance.fetchall())
 
-        horror = "select * from mov_info where mov_info like '%공포%' order by mov_date desc"
+        horror = "select * from mov_info where mov_info like '%'|| '공포' ||'%' order by mov_date desc"
 
         mov_info_horror = cur.execute(horror.format('horror'))
         mov_info_horror = list(mov_info_horror.fetchall())
 
-        ani = "select * from mov_info where mov_info like '%애니메이션%' order by mov_date desc"
+        ani = "select * from mov_info where mov_info like '%'|| '애니메이션' ||'%' order by mov_date desc"
 
         mov_info_ani = cur.execute(ani.format('ani'))
         mov_info_ani = list(mov_info_ani.fetchall())
@@ -95,8 +95,8 @@ def catalog():
         pages = pager.get_pages()
         skip = (page - 1) * 24
         data_to_show = mov_info_all[skip: skip + 24]
-        print(len(data_to_show))
-        print(data_to_show)
+        # print(len(data_to_show))
+        # print(data_to_show)
         return render_template('catalog.html',  url=url, mov_info_action=mov_info_action,
                                mov_info_romance=mov_info_romance, mov_info_horror=mov_info_horror,
                                mov_info_ani=mov_info_ani,  pages=pages,data_to_show=data_to_show)
