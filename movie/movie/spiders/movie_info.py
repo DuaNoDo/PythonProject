@@ -118,7 +118,7 @@ class MovieInfoSpider(CrawlSpider):
     def strclean(self, stri):
         #         stri = str(stri).strip().replace(' ', '').replace('	', '').replace('''
         # ''','')
-        stri = re.sub('\s', '', stri).replace('해당정보없음', '')
+        stri = re.sub('\s', '', stri).replace('해당정보없음', '').replace('년', '')
         return stri
 
     def cleandate(self, string):
