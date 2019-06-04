@@ -57,6 +57,3 @@ conn.commit()
 
 conn.close()
 
-str='잠깐만 회사 좀 관두고 올게'
-print(strclean(str))
-

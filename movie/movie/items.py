@@ -26,5 +26,7 @@ class MovieItem(scrapy.Item):
     movie_content5 = scrapy.Field()
     reple_score=scrapy.Field()
     reple_content=scrapy.Field()
+    reple_date=scrapy.Field()
     movie_site=scrapy.Field()
+
     pass

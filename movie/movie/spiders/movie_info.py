@@ -32,9 +32,24 @@ class MovieInfoSpider(CrawlSpider):
             '/html/body/div[3]/div[1]/div[1]/div/strong/text()').extract())
         name_e = ' '.join(response.xpath(
             '/html/body/div[3]/div[1]/div[1]/div/text()').extract())
+        year='20'
+        date='해당정보없음'
+        date1 = response.xpath(
+            '//*/div/div[1]/div[2]/dl/dd[5]/text()').extract()
+        date2 = response.xpath(
+            '//*/div/div[1]/div[2]/dl/dd[6]/text()').extract()
+        date3 = response.xpath(
+            '//*/div/div[1]/div[2]/dl/dd[7]/text()').extract()
 
-        date = ' '.join(response.xpath(
-            '//*/div/div[1]/div[2]/dl/dd[5]/text() |//*/div/div[1]/div[2]/dl/dd[6]/text()').extract())
+        if year in date1[0]:
+            date = date1[0]
+
+        elif year in date2[0]:
+            date = date2[0]
+
+        elif year in date3[0]:
+            date = date3[0]
+
 
         info = ' '.join(response.xpath(
             '//*/div/div[1]/div[2]/dl/dd[4]/text()').extract())
@@ -46,18 +61,16 @@ class MovieInfoSpider(CrawlSpider):
         cont = ' '.join(response.xpath(
             '//*/div/div[1]/div/p/text()').extract())
         dir=dire.split(',')
-        # if dir[0].__contains__('http'):
-        #     dire=dir[1]
-        # else:
-        #     dire=dir[0]
-        # self.store_data(code, img, name, name_e, date, info, dire, actor, cont)
-        # self.update_dir(code,dire)
+
+        self.store_data(code, img, name, name_e, date, info, dire, actor, cont)
+        #self.update_dir(code,dire)
     def parse(self, response):
         itemList = []
 
         yield itemList
 
     def store_data(self, code, img, name, name_e, date, info, dire, actor, cont):
+
         try:
             self.cursor.execute(
                 '''insert into Mov_info (Mov_code, Mov_name_kor, Mov_name_eng, Mov_date, Mov_director, Mov_actor, Mov_info, Mov_content, Mov_img, Add_date) values (?,?,?,?,?,?,?,?,?, datetime())''',
@@ -84,7 +97,7 @@ class MovieInfoSpider(CrawlSpider):
     def update_dir(self, code, dire):
         try:
             self.cursor.execute(
-                '''update Mov_info set Mov_date=? where Mov_code=?''',
+                '''update Mov_info set Mov_director=? where Mov_code=?''',
                 (str(dire), str(code)))
 
             self.connection.commit()
