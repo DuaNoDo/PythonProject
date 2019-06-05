@@ -105,7 +105,7 @@ def catalog():
 def catalogWS():
         if request.method=='GET':
             keyword = request.values["keyword"]
-
+            len_to_show=24
             with get_db_con() as con:
                 cur = con.cursor()
 
@@ -119,15 +119,21 @@ def catalogWS():
                 total_all = '''select count(*) from mov_info where mov_name_kor like '%'''+keyword+'''%' or mov_name_eng like '%'''+keyword+'''%' or mov_director like '%'''+keyword+'''%' or mov_actor like '%'''+keyword+'''%' order by mov_date desc'''
                 total_all = cur.execute(total_all)
                 total_all = int(total_all.fetchone()[0])
-                print(total_all)
-                page = int(request.args.get('page', 1))
-                pager = Pager(page, total_all)
-                pages = pager.get_pages()
-                skip = (page - 1) * 24
-                data_to_show = mov_info_all[skip: skip + 24]
+
+                if total_all>=24 :
+                    page = int(request.args.get('page', 1))
+                    pager = Pager(page, total_all)
+                    pages = pager.get_pages()
+                    skip = (page - 1) * 24
+                    data_to_show = mov_info_all[skip: skip + 24]
+                    len_to_show= len(data_to_show)
+                else:
+                    pages=[1]
+                    data_to_show = mov_info_all
+                    len_to_show = len(data_to_show)
                 # print(len(data_to_show))
                 # print(data_to_show)
-                return render_template('catalog.html', url=url, pages=pages, data_to_show=data_to_show)
+                return render_template('catalog.html', url=url, pages=pages, data_to_show=data_to_show,len_to_show=len_to_show)
 
 
 @app.route('/catalog/search',methods=['GET','POST'])
