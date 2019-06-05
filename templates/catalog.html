@@ -179,10 +179,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <form action="/catalog/search" method="get">
+                    <!--<form action="/catalog/search" method="get">
                         <input type="hidden" value="액션" name="cate">
                         <input type="submit">
-                    </form>
+                    </form>-->
                     <form action="/catalog/search" method="get">
                         <div class="filter__content">
                             <div class="filter__items">
@@ -203,7 +203,7 @@
                                         aria-labelledby="filter-genre">
                                         <li>전체</li>
                                         <li>액션</li>
-                                        <li>어드밴쳐</li>
+                                        <li>어드벤처</li>
                                         <li>동물</li>
                                         <li>애니메이션</li>
                                         <li>일대기</li>
@@ -304,7 +304,7 @@
 
                             <!-- filter btn -->
 
-                            <input type="submit" class="filter__btn"  value="apply filter">apply filter</input>
+                            <input type="button" onclick="goPost();" class="filter__btn"  value="apply filter">apply filter</input>
 
                             <!-- end filter btn -->
 
@@ -458,6 +458,39 @@
 <script src="../static/js/photoswipe.min.js"></script>
 <script src="../static/js/photoswipe-ui-default.min.js"></script>
 <script src="../static/js/main.js"></script>
+<script>
+function goPost() {
+var obj1 = document.getElementsByName('cate')[0].value;
+var obj2 = document.getElementsByName('time')[0].value;
+alert(obj1,time);
+
+var form = document.createElement("form");
+form.setAttribute("charset", "UTF-8");
+form.setAttribute("method", "Get"); // Get 또는 Post 입력
+form.setAttribute("action", "/catalog/search");
+
+
+var hiddenField = document.createElement("input");
+
+hiddenField.setAttribute("type", "hidden");
+
+hiddenField.setAttribute("name", "cate");
+hiddenField.setAttribute("value", obj1);
+
+hiddenField.setAttribute("name", "time");
+hiddenField.setAttribute("value", obj2);
+
+form.appendChild(hiddenField);
+
+var url ="/catalog/search"
+
+var status = "toolbar=no,directories=n,scrollbars=no,resizable=no,status=no,menubar=no,width=1240, height=1200, toop=0,left=20"
+
+document.body.appendChild(form);
+form.submit();
+}
+
+</script>
 <script>
     {% block js %}
   {% if active_url %}

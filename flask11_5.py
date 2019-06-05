@@ -105,9 +105,10 @@ def catalog():
 def catalogS():
         if request.method=='GET':
             cate = request.values["cate"]
+            time=request.values['time']
             with get_db_con() as con:
                 cur = con.cursor()
-                
+
                 mov_info_all = '''select * from Mov_info  where mov_info like  '%'''+cate+'''%' order by mov_date desc'''
 
                 mov_info_all = cur.execute(mov_info_all)
@@ -118,7 +119,7 @@ def catalogS():
                 total_all = '''select count(*) from mov_info where mov_info like  '%'''+cate+'''%' order by mov_date desc'''
                 total_all = cur.execute(total_all)
                 total_all = int(total_all.fetchone()[0])
-
+                print(total_all)
                 page = int(request.args.get('page', 1))
                 pager = Pager(page, total_all)
                 pages = pager.get_pages()
@@ -150,8 +151,8 @@ def catalogS():
                 pages = pager.get_pages()
                 skip = (page - 1) * 24
                 data_to_show = mov_info_all[skip: skip + 24]
-                print(len(data_to_show))
-                print(data_to_show)
+                # print(len(data_to_show))
+                # print(data_to_show)
                 return render_template('catalog/', url=url, mov_info_action=mov_info_action,
                                        mov_info_romance=mov_info_romance, mov_info_horror=mov_info_horror,
                                        mov_info_ani=mov_info_ani, pages=pages, data_to_show=data_to_show)
