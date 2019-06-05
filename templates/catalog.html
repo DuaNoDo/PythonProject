@@ -179,7 +179,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-
+                    <form action="/catalog/search" method="get">
+                        <input type="hidden" value="액션" name="cate">
+                        <input type="submit">
+                    </form>
+                    <form action="/catalog/search" method="get">
                         <div class="filter__content">
                             <div class="filter__items">
 
@@ -190,7 +194,7 @@
                                     <div class="filter__item-btn dropdown-toggle" role="navigation" id="filter-genre"
                                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                                            <input type="button" name="cate" value="전체">
+                                            <input type="button" value="전체" name="cate" >
 
                                         <span></span>
                                     </div>
@@ -300,12 +304,12 @@
 
                             <!-- filter btn -->
 
-                            <button class="filter__btn" type="submit" value="apply filter">apply filter</button>
+                            <input type="submit" class="filter__btn"  value="apply filter">apply filter</input>
 
                             <!-- end filter btn -->
 
                         </div>
-
+                    </form>
                 </div>
             </div>
         </div>

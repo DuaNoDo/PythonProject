@@ -2,12 +2,14 @@ import os
 import sqlite3
 from flask import Flask, render_template, request, current_app
 from flask_pager import Pager
+
 app = Flask(__name__)
 
 app.debug = True
 
 app.config['PAGE_SIZE'] = 287
 app.config['VISIBLE_PAGE_COUNT'] = 10
+
 
 def get_db_con() -> sqlite3.connect:
     return sqlite3.connect("movie.db")
@@ -50,12 +52,10 @@ def index():
                                mov_info_ani=mov_info_ani)
 
 
+@app.route('/catalog' , methods=['POST','GET'])
 @app.route('/catalog')
 @app.route('/catalog/')
-@app.route('/catalog', methods=['POST', 'GET'])
-@app.route('/catalog/', methods=['POST', 'GET'])
 def catalog():
-
     with get_db_con() as con:
         cur = con.cursor()
 
@@ -97,9 +97,64 @@ def catalog():
         data_to_show = mov_info_all[skip: skip + 24]
         # print(len(data_to_show))
         # print(data_to_show)
-        return render_template('catalog.html',  url=url, mov_info_action=mov_info_action,
+        return render_template('catalog.html', url=url, mov_info_action=mov_info_action,
                                mov_info_romance=mov_info_romance, mov_info_horror=mov_info_horror,
-                               mov_info_ani=mov_info_ani,  pages=pages,data_to_show=data_to_show)
+                               mov_info_ani=mov_info_ani, pages=pages, data_to_show=data_to_show)
+
+@app.route('/catalog/search',methods=['GET','POST'])
+def catalogS():
+        if request.method=='GET':
+            cate = request.values["cate"]
+            with get_db_con() as con:
+                cur = con.cursor()
+                
+                mov_info_all = '''select * from Mov_info  where mov_info like  '%'''+cate+'''%' order by mov_date desc'''
+
+                mov_info_all = cur.execute(mov_info_all)
+                mov_info_all = list(mov_info_all.fetchall())
+
+                url = 'http://www.kobis.or.kr/'
+
+                total_all = '''select count(*) from mov_info where mov_info like  '%'''+cate+'''%' order by mov_date desc'''
+                total_all = cur.execute(total_all)
+                total_all = int(total_all.fetchone()[0])
+
+                page = int(request.args.get('page', 1))
+                pager = Pager(page, total_all)
+                pages = pager.get_pages()
+                skip = (page - 1) * 24
+                data_to_show = mov_info_all[skip: skip + 24]
+                print(len(data_to_show))
+                print(data_to_show)
+                return render_template('catalog.html', url=url, pages=pages, data_to_show=data_to_show)
+
+
+        if request.method == 'POST':
+            cate=request.values["cate"]
+            with get_db_con() as con:
+                cur = con.cursor()
+                print(cate)
+                mov_info_all = "select * from Mov_info  where mov_info like  '%'||?||'%' order by mov_date desc"
+
+                mov_info_all = cur.execute(mov_info_all, cate)
+                mov_info_all = list(mov_info_all.fetchall())
+
+                url = 'http://www.kobis.or.kr/'
+
+                total_all = "select count(*) from mov_info where mov_info like '%'||?||'%' order by mov_date desc"
+                total_all = cur.execute(total_all, cate)
+                total_all = int(total_all.fetchone()[0])
+
+                page = int(request.args.get('page', 1))
+                pager = Pager(page, total_all)
+                pages = pager.get_pages()
+                skip = (page - 1) * 24
+                data_to_show = mov_info_all[skip: skip + 24]
+                print(len(data_to_show))
+                print(data_to_show)
+                return render_template('catalog/', url=url, mov_info_action=mov_info_action,
+                                       mov_info_romance=mov_info_romance, mov_info_horror=mov_info_horror,
+                                       mov_info_ani=mov_info_ani, pages=pages, data_to_show=data_to_show)
 
 
 @app.route('/details')
@@ -146,4 +201,3 @@ def jsonize(result):
 
 if __name__ == "__main__":
     app.run()
-
