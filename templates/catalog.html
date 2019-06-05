@@ -134,14 +134,14 @@
     </div>
 
     <!-- header search -->
-    <form action="#" class="header__search">
+    <form action="/wsearch" class="header__search" method="get">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="header__search-content">
-                        <input type="text" placeholder="Search for a movie, TV Series that you are looking for">
+                        <input type="text" name="keyword" placeholder="Search for a movie, TV Series that you are looking for">
 
-                        <button type="button">search</button>
+                        <button type="submit" >search</button>
                     </div>
                 </div>
             </div>
@@ -247,7 +247,7 @@
 
                                     <div class="filter__item-btn dropdown-toggle" role="navigation" id="filter-quality"
                                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <input type="button" name="time" value="전체">
+                                        <input type="button"  value="전체" name="time">
                                         <span></span>
                                     </div>
 
@@ -462,7 +462,6 @@
 function goPost() {
 var obj1 = document.getElementsByName('cate')[0].value;
 var obj2 = document.getElementsByName('time')[0].value;
-alert(obj1,time);
 
 var form = document.createElement("form");
 form.setAttribute("charset", "UTF-8");
@@ -477,17 +476,40 @@ hiddenField.setAttribute("type", "hidden");
 hiddenField.setAttribute("name", "cate");
 hiddenField.setAttribute("value", obj1);
 
-hiddenField.setAttribute("name", "time");
-hiddenField.setAttribute("value", obj2);
-
 form.appendChild(hiddenField);
 
-var url ="/catalog/search"
+var hiddenField2 = document.createElement("input");
 
-var status = "toolbar=no,directories=n,scrollbars=no,resizable=no,status=no,menubar=no,width=1240, height=1200, toop=0,left=20"
+hiddenField2.setAttribute("name", "time");
+hiddenField2.setAttribute("value", obj2);
+
+form.appendChild(hiddenField2);
 
 document.body.appendChild(form);
 form.submit();
+}
+
+function goKeyword(){
+var obj = document.getElementsByName('keyword')[0].value;
+
+var form = document.createElement("form");
+form.setAttribute("charset", "UTF-8");
+form.setAttribute("method", "Get"); // Get 또는 Post 입력
+form.setAttribute("action", "/catalog/wsearch");
+
+
+var hiddenField = document.createElement("input");
+
+hiddenField.setAttribute("type", "hidden");
+
+hiddenField.setAttribute("name", "keyword");
+hiddenField.setAttribute("value", obj);
+
+form.appendChild(hiddenField);
+
+document.body.appendChild(form);
+form.submit();
+
 }
 
 </script>

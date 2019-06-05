@@ -124,19 +124,19 @@
 		</div>
 
 		<!-- header search -->
-		<form action="#" class="header__search">
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<div class="header__search-content">
-							<input type="text" placeholder="Search for a movie, TV Series that you are looking for">
+		<form action="/wsearch" class="header__search" method="get">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="header__search-content">
+                        <input type="text" name="keyword" placeholder="Search for a movie, TV Series that you are looking for">
 
-							<button type="button">search</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</form>
+                        <button type="submit" >search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 		<!-- end header search -->
 	</header>
 	<!-- end header -->
