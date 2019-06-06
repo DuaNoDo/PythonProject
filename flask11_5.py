@@ -49,7 +49,7 @@ def index():
 
         return render_template('index.html', mov_info_all=mov_info_all, url=url, mov_info_action=mov_info_action,
                                mov_info_romance=mov_info_romance, mov_info_horror=mov_info_horror,
-                               mov_info_ani=mov_info_ani)
+                               mov_info_ani=mov_info_ani )
 
 
 @app.route('/catalog' , methods=['POST','GET'])
@@ -221,13 +221,13 @@ def catalog3():
         ajaxMovie=data_to_show[0 :12]
         return render_template('catalog3.html', url=url,len_to_show=len_to_show, data_to_show=data_to_show,ajaxMovie=jsonize(ajaxMovie))
 
-@app.route('/catalog3/<int:ajaxpage>/')
-@app.route('/catalog3/<int:ajaxpage>')
+@app.route('/index/<int:ajaxpage>/')
+@app.route('/index/<int:ajaxpage>')
 def getajaxMovie(ajaxpage):
     with get_db_con() as con:
         cur = con.cursor()
-        start=(ajaxpage)*12
-        end=(ajaxpage+1)*12
+        start=(ajaxpage)*6
+        end=(ajaxpage+1)*6
         mov_info_all = "select * from Mov_info"
 
         mov_info_all = cur.execute(mov_info_all)
@@ -236,10 +236,8 @@ def getajaxMovie(ajaxpage):
         url = 'http://www.kobis.or.kr/'
 
         data_to_show=mov_info_all
-        print(len(data_to_show))
         ajaxMovie=data_to_show[start :end]
-        print(len(ajaxMovie))
-        print (jsonize(ajaxMovie))
+
         return jsonize(ajaxMovie)
 
 

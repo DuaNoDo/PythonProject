@@ -463,141 +463,20 @@
 <!-- expected premiere -->
 <section class="section section--bg" data-bg="../static/img/section/section.jpg">
     <div class="container">
-        <div class="row">
+        <div class="row item">
             <!-- section title -->
-            <div class="col-12">
-                <h2 class="section__title">Expected premiere</h2>
-            </div>
+
+
+            <!-- card -->
+
+				<!-- end card -->
             <!-- end section title -->
 
-            <!-- card -->
-            <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-                <div class="card">
-                    <div class="card__cover">
-                        <img src="../static/img/covers/cover.jpg" alt="">
-                        <a href="#" class="card__play">
-                            <i class="icon ion-ios-play"></i>
-                        </a>
-                    </div>
-                    <div class="card__content">
-                        <h3 class="card__title"><a href="#">I Dream in Another Language</a></h3>
-                        <span class="card__category">
-								<a href="#">Action</a>
-								<a href="#">Triler</a>
-							</span>
-                        <span class="card__rate"><i class="icon ion-ios-star"></i>8.4</span>
-                    </div>
-                </div>
-            </div>
-            <!-- end card -->
 
-            <!-- card -->
-            <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-                <div class="card">
-                    <div class="card__cover">
-                        <img src="../static/img/covers/cover3.jpg" alt="">
-                        <a href="#" class="card__play">
-                            <i class="icon ion-ios-play"></i>
-                        </a>
-                    </div>
-                    <div class="card__content">
-                        <h3 class="card__title"><a href="#">Benched</a></h3>
-                        <span class="card__category">
-								<a href="#">Comedy</a>
-							</span>
-                        <span class="card__rate"><i class="icon ion-ios-star"></i>7.1</span>
-                    </div>
-                </div>
-            </div>
-            <!-- end card -->
-
-            <!-- card -->
-            <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-                <div class="card">
-                    <div class="card__cover">
-                        <img src="../static/img/covers/cover2.jpg" alt="">
-                        <a href="#" class="card__play">
-                            <i class="icon ion-ios-play"></i>
-                        </a>
-                    </div>
-                    <div class="card__content">
-                        <h3 class="card__title"><a href="#">Whitney</a></h3>
-                        <span class="card__category">
-								<a href="#">Romance</a>
-								<a href="#">Drama</a>
-								<a href="#">Music</a>
-							</span>
-                        <span class="card__rate"><i class="icon ion-ios-star"></i>6.3</span>
-                    </div>
-                </div>
-            </div>
-            <!-- end card -->
-
-            <!-- card -->
-            <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-                <div class="card">
-                    <div class="card__cover">
-                        <img src="../static/img/covers/cover6.jpg" alt="">
-                        <a href="#" class="card__play">
-                            <i class="icon ion-ios-play"></i>
-                        </a>
-                    </div>
-                    <div class="card__content">
-                        <h3 class="card__title"><a href="#">Blindspotting</a></h3>
-                        <span class="card__category">
-								<a href="#">Comedy</a>
-								<a href="#">Drama</a>
-							</span>
-                        <span class="card__rate"><i class="icon ion-ios-star"></i>7.9</span>
-                    </div>
-                </div>
-            </div>
-            <!-- end card -->
-
-            <!-- card -->
-            <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-                <div class="card">
-                    <div class="card__cover">
-                        <img src="../static/img/covers/cover4.jpg" alt="">
-                        <a href="#" class="card__play">
-                            <i class="icon ion-ios-play"></i>
-                        </a>
-                    </div>
-                    <div class="card__content">
-                        <h3 class="card__title"><a href="#">I Dream in Another Language</a></h3>
-                        <span class="card__category">
-								<a href="#">Action</a>
-								<a href="#">Triler</a>
-							</span>
-                        <span class="card__rate"><i class="icon ion-ios-star"></i>8.4</span>
-                    </div>
-                </div>
-            </div>
-            <!-- end card -->
-
-            <!-- card -->
-            <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-                <div class="card">
-                    <div class="card__cover">
-                        <img src="../static/img/covers/cover5.jpg" alt="">
-                        <a href="#" class="card__play">
-                            <i class="icon ion-ios-play"></i>
-                        </a>
-                    </div>
-                    <div class="card__content">
-                        <h3 class="card__title"><a href="#">Benched</a></h3>
-                        <span class="card__category">
-								<a href="#">Comedy</a>
-							</span>
-                        <span class="card__rate"><i class="icon ion-ios-star"></i>7.1</span>
-                    </div>
-                </div>
-            </div>
-            <!-- end card -->
 
             <!-- section btn -->
             <div class="col-12">
-                <a href="#" class="section__btn">Show more</a>
+                <a id="button" class="section__btn">Show more</a>
             </div>
             <!-- end section btn -->
         </div>
@@ -758,6 +637,86 @@
 <script src="../static/js/photoswipe.min.js"></script>
 <script src="../static/js/photoswipe-ui-default.min.js"></script>
 <script src="../static/js/main.js"></script>
+<script type="text/javascript">
+var list=0;
+        $(document).ready(function() {
+           ajaxpage=0
+           $.ajax({
+              url: 'http://127.0.0.1:5000/index/'+ajaxpage,
+              success: function(ajaxMovie) {
+              ajaxMovie=JSON.parse(ajaxMovie);
+              list=ajaxMovie;
+                 for (var i = 0; i < ajaxMovie.length; i++) {
+                    $('.item').append(
+                       create(
+                                ajaxMovie[i][9],
+                                ajaxMovie[i][11],
+                                ajaxMovie[i][0],
+                                ajaxMovie[i][12],
+                                ajaxMovie[i][8],
+                                ajaxMovie[i][2]
+                       )
+                    );
+                 }
+              }
+           });
+           ajaxpage++;
+        });
+        $("#button").click(function(e){
+            e.preventDefault();
+            $.ajax({
+                url: 'http://127.0.0.1:5000/index/'+ajaxpage,
+                success: function(ajaxMovie) {
+                ajaxMovie=JSON.parse(ajaxMovie);
+                    for (var i = 0; i < ajaxMovie.length; i++) {
+                        $('.item').append(
+                            create(
+                                ajaxMovie[i][9],
+                                ajaxMovie[i][11],
+                                ajaxMovie[i][0],
+                                ajaxMovie[i][12],
+                                ajaxMovie[i][8],
+                                ajaxMovie[i][2]
+                            )
+                        );
+                    }
+                }
+            });
+            ajaxpage++;
+        });
+        function create(img,code,title,info,cont,date){
+            return `
+            <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+                <div class="card">
+                    <div class="card__cover">
+                        <figure class="snip1384">
+                            <img src="http://www.kobis.or.kr/"${img} alt="">
+                            <a href="/details/${code}">
+                                <figcaption>
+                                    <div class="mov_title">
+                                        <h3 class="card__title">${title}</h3>
+                                    </div>
+                                    <div class="mov_info">
+                                        <p>${info}</p>
+                                    </div>
+                                    <div class="mov_content">
+                                        <i>${cont}</i>
+                                    </div>
+                                    <div class="mov_date">
+                                        <p>${date} 개봉</p>
+                                    </div>
+                                    <div class="mov_score">
+                                        <p class="icon ion-ios-star"> 8.4 / 10</p>
+                                    </div>
+                                </figcaption>
+                             </a>
+                        </figure>
+                    </div>
+                </div>
+            </div>`;
+        }
+
+</script>
 </body>
 
 </html>
