@@ -178,28 +178,29 @@ def details(mov_code):
         mov_info_details = cur.execute(mov_info_details.format(mov_code))
         mov_info_details = list(mov_info_details.fetchall())
 
+
         # CINEMA
         mov_score_cinema = "select * from mov_score where mov_code = {} and rep_site='cinema'"
 
         mov_score_cinema = cur.execute(mov_score_cinema.format(mov_code))
         mov_score_cinema = list(mov_score_cinema.fetchall())
-
+        mov_score_cinema_len = len(mov_score_cinema)
         # NAVER
         mov_score_naver = "select * from mov_score where mov_code = {} and rep_site='naver'"
 
         mov_score_naver = cur.execute(mov_score_naver.format(mov_code))
         mov_score_naver = list(mov_score_naver.fetchall())
-
+        mov_score_naver_len = len(mov_score_naver)
         # MEGABOX
         mov_score_mega = "select * from mov_score where mov_code = {} and rep_site='megabox'"
 
         mov_score_mega = cur.execute(mov_score_mega.format(mov_code))
         mov_score_mega = list(mov_score_mega.fetchall())
-
+        mov_score_mega_len = len(mov_score_mega)
     url = 'http://www.kobis.or.kr/'
 
     return render_template('details.html', mov_info_details=mov_info_details, mov_score_cinema=mov_score_cinema,
-                           mov_score_naver=mov_score_naver, mov_score_mega=mov_score_mega, url=url)
+                           mov_score_naver=mov_score_naver, mov_score_mega=mov_score_mega, url=url,mov_score_cinema_len=mov_score_cinema_len,mov_score_naver_len=mov_score_naver_len,mov_score_mega_len=mov_score_mega_len)
 
 @app.route('/catalog3')
 def catalog3():
