@@ -1,9 +1,8 @@
-import json
 import os
 import sqlite3
 from flask import Flask, render_template, request, current_app
 from flask_pager import Pager
-
+import json
 app = Flask(__name__)
 
 app.debug = True
@@ -53,7 +52,7 @@ def index():
                                mov_info_ani=mov_info_ani)
 
 
-@app.route('/catalog', methods=['POST', 'GET'])
+@app.route('/catalog' , methods=['POST','GET'])
 @app.route('/catalog')
 @app.route('/catalog/')
 def catalog():
@@ -96,78 +95,75 @@ def catalog():
         pages = pager.get_pages()
         skip = (page - 1) * 24
         data_to_show = mov_info_all[skip: skip + 24]
-        len_to_show = len(data_to_show)
+        len_to_show=len(data_to_show)
         # print(data_to_show)
         return render_template('catalog.html', url=url, mov_info_action=mov_info_action,
                                mov_info_romance=mov_info_romance, mov_info_horror=mov_info_horror,
-                               mov_info_ani=mov_info_ani, pages=pages, data_to_show=data_to_show,
-                               len_to_show=len_to_show)
+                               mov_info_ani=mov_info_ani, pages=pages, data_to_show=data_to_show,len_to_show=len_to_show)
 
-
-@app.route('/wsearch', methods=['GET', 'POST'])
+@app.route('/wsearch',methods=['GET','POST'])
 def catalogWS():
-    if request.method == 'GET':
-        keyword = request.values["keyword"]
-        len_to_show = 24
-        with get_db_con() as con:
-            cur = con.cursor()
+        if request.method=='GET':
+            keyword = request.values["keyword"]
+            len_to_show=24
+            with get_db_con() as con:
+                cur = con.cursor()
 
-            mov_info_all = '''select * from Mov_info  where mov_name_kor like '%''' + keyword + '''%' or mov_name_eng like '%''' + keyword + '''%' or mov_director like '%''' + keyword + '''%' or mov_actor like '%''' + keyword + '''%' order by mov_date desc'''
+                mov_info_all = '''select * from Mov_info  where mov_name_kor like '%'''+keyword+'''%' or mov_name_eng like '%'''+keyword+'''%' or mov_director like '%'''+keyword+'''%' or mov_actor like '%'''+keyword+'''%' order by mov_date desc'''
 
-            mov_info_all = cur.execute(mov_info_all)
-            mov_info_all = list(mov_info_all.fetchall())
+                mov_info_all = cur.execute(mov_info_all)
+                mov_info_all = list(mov_info_all.fetchall())
 
-            url = 'http://www.kobis.or.kr/'
+                url = 'http://www.kobis.or.kr/'
 
-            total_all = '''select count(*) from mov_info where mov_name_kor like '%''' + keyword + '''%' or mov_name_eng like '%''' + keyword + '''%' or mov_director like '%''' + keyword + '''%' or mov_actor like '%''' + keyword + '''%' order by mov_date desc'''
-            total_all = cur.execute(total_all)
-            total_all = int(total_all.fetchone()[0])
+                total_all = '''select count(*) from mov_info where mov_name_kor like '%'''+keyword+'''%' or mov_name_eng like '%'''+keyword+'''%' or mov_director like '%'''+keyword+'''%' or mov_actor like '%'''+keyword+'''%' order by mov_date desc'''
+                total_all = cur.execute(total_all)
+                total_all = int(total_all.fetchone()[0])
 
-            if total_all >= 24:
+                if total_all>=24 :
+                    page = int(request.args.get('page', 1))
+                    pager = Pager(page, total_all)
+                    pages = pager.get_pages()
+                    skip = (page - 1) * 24
+                    data_to_show = mov_info_all[skip: skip + 24]
+                    len_to_show= len(data_to_show)
+                else:
+                    pages=[1]
+                    data_to_show = mov_info_all
+                    len_to_show = len(data_to_show)
+                # print(len(data_to_show))
+                # print(data_to_show)
+                return render_template('catalog.html', url=url, pages=pages, data_to_show=data_to_show,len_to_show=len_to_show)
+
+
+@app.route('/catalog/search',methods=['GET','POST'])
+def catalogS():
+        if request.method=='GET':
+            cate = request.values["cate"]
+            time=request.values['time']
+            with get_db_con() as con:
+                cur = con.cursor()
+
+                mov_info_all = '''select * from Mov_info  where mov_info like '%'''+cate+'''%' and mov_info like '%'''+time+'''%' order by mov_date desc'''
+
+                mov_info_all = cur.execute(mov_info_all)
+                mov_info_all = list(mov_info_all.fetchall())
+
+                url = 'http://www.kobis.or.kr/'
+
+                total_all = '''select count(*) from mov_info where mov_info like '%'''+cate+'''%' and mov_info like '%'''+time+'''%' order by mov_date desc'''
+                total_all = cur.execute(total_all)
+                total_all = int(total_all.fetchone()[0])
+                print(total_all)
                 page = int(request.args.get('page', 1))
                 pager = Pager(page, total_all)
                 pages = pager.get_pages()
                 skip = (page - 1) * 24
                 data_to_show = mov_info_all[skip: skip + 24]
-                len_to_show = len(data_to_show)
-            else:
-                pages = [1]
-                data_to_show = mov_info_all
-                len_to_show = len(data_to_show)
-            # print(len(data_to_show))
-            # print(data_to_show)
-            return render_template('catalog.html', url=url, pages=pages, data_to_show=data_to_show,
-                                   len_to_show=len_to_show)
+                len_to_show=len(data_to_show)
+                # print(data_to_show)
+                return render_template('catalog.html', url=url, pages=pages, data_to_show=data_to_show,len_to_show=len_to_show)
 
-
-@app.route('/catalog/search', methods=['GET', 'POST'])
-def catalogS():
-    if request.method == 'GET':
-        cate = request.values["cate"]
-        time = request.values['time']
-        with get_db_con() as con:
-            cur = con.cursor()
-
-            mov_info_all = '''select * from Mov_info  where mov_info like '%''' + cate + '''%' and mov_info like '%''' + time + '''%' order by mov_date desc'''
-
-            mov_info_all = cur.execute(mov_info_all)
-            mov_info_all = list(mov_info_all.fetchall())
-
-            url = 'http://www.kobis.or.kr/'
-
-            total_all = '''select count(*) from mov_info where mov_info like '%''' + cate + '''%' and mov_info like '%''' + time + '''%' order by mov_date desc'''
-            total_all = cur.execute(total_all)
-            total_all = int(total_all.fetchone()[0])
-            print(total_all)
-            page = int(request.args.get('page', 1))
-            pager = Pager(page, total_all)
-            pages = pager.get_pages()
-            skip = (page - 1) * 24
-            data_to_show = mov_info_all[skip: skip + 24]
-            len_to_show = len(data_to_show)
-            # print(data_to_show)
-            return render_template('catalog.html', url=url, pages=pages, data_to_show=data_to_show,
-                                   len_to_show=len_to_show)
 
 
 @app.route('/details')
@@ -187,42 +183,23 @@ def details(mov_code):
 
         mov_score_cinema = cur.execute(mov_score_cinema.format(mov_code))
         mov_score_cinema = list(mov_score_cinema.fetchall())
-        mov_score_cinema_len = len(mov_score_cinema)
 
         # NAVER
         mov_score_naver = "select * from mov_score where mov_code = {} and rep_site='naver'"
 
         mov_score_naver = cur.execute(mov_score_naver.format(mov_code))
         mov_score_naver = list(mov_score_naver.fetchall())
-        mov_score_naver_len = len(mov_score_naver)
 
         # MEGABOX
         mov_score_mega = "select * from mov_score where mov_code = {} and rep_site='megabox'"
 
         mov_score_mega = cur.execute(mov_score_mega.format(mov_code))
         mov_score_mega = list(mov_score_mega.fetchall())
-        mov_score_mega_len = len(mov_score_mega)
 
-
-
-        url = 'http://www.kobis.or.kr/'
+    url = 'http://www.kobis.or.kr/'
 
     return render_template('details.html', mov_info_details=mov_info_details, mov_score_cinema=mov_score_cinema,
-                           mov_score_naver=mov_score_naver, mov_score_mega=mov_score_mega, url=url,mov_score_cinema_len=mov_score_cinema_len,mov_score_naver_len=mov_score_naver_len,mov_score_mega_len=mov_score_mega_len)
-
-
-def details():
-    if request.method == 'GET':
-        re_title = request.values["re_title"]
-        re_cont = request.values['re_cont']
-        with get_db_con() as con:
-            cur = con.cursor()
-
-            mov_score_insert = '''insert into Mov_score values  (''' + mov_code + ''',''' + re_title + '|' + re_cont + ''',0, 'cinema' ,DATETIME('NOW'))'''
-
-            cur.execute(mov_score_insert, (mov_code, re_title, re_cont))
-            con.commit()
-    return render_template('details.html')
+                           mov_score_naver=mov_score_naver, mov_score_mega=mov_score_mega, url=url)
 
 @app.route('/catalog3')
 def catalog3():
@@ -239,20 +216,18 @@ def catalog3():
         total_all = 'select count(*) from mov_info'
         total_all = cur.execute(total_all)
         total_all = int(total_all.fetchone()[0])
-        data_to_show = mov_info_all
-        len_to_show = len(data_to_show)
-        ajaxMovie = data_to_show[0:12]
-        return render_template('catalog3.html', url=url, len_to_show=len_to_show, data_to_show=data_to_show,
-                               ajaxMovie=jsonize(ajaxMovie))
-
+        data_to_show=mov_info_all
+        len_to_show=len(data_to_show)
+        ajaxMovie=data_to_show[0 :12]
+        return render_template('catalog3.html', url=url,len_to_show=len_to_show, data_to_show=data_to_show,ajaxMovie=jsonize(ajaxMovie))
 
 @app.route('/index/<int:ajaxpage>/')
 @app.route('/index/<int:ajaxpage>')
 def getajaxMovie(ajaxpage):
     with get_db_con() as con:
         cur = con.cursor()
-        start = (ajaxpage) * 6
-        end = (ajaxpage + 1) * 6
+        start=(ajaxpage)*6
+        end=(ajaxpage+1)*6
         mov_info_all = "select * from Mov_info"
 
         mov_info_all = cur.execute(mov_info_all)
@@ -260,15 +235,15 @@ def getajaxMovie(ajaxpage):
 
         url = 'http://www.kobis.or.kr/'
 
-        data_to_show = mov_info_all
+        data_to_show=mov_info_all
 
-        ajaxMovie = data_to_show[start:end]
+        ajaxMovie=data_to_show[start :end]
 
         return jsonize(ajaxMovie)
 
 
 def jsonize(result):
-    result_json = json.dumps(result, ensure_ascii=False).encode("utf-8")
+    result_json=json.dumps(result,ensure_ascii=False).encode("utf-8")
     return result_json
 
 
