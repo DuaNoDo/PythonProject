@@ -95,11 +95,11 @@ def catalog():
         pages = pager.get_pages()
         skip = (page - 1) * 24
         data_to_show = mov_info_all[skip: skip + 24]
-        # print(len(data_to_show))
+        len_to_show=len(data_to_show)
         # print(data_to_show)
         return render_template('catalog.html', url=url, mov_info_action=mov_info_action,
                                mov_info_romance=mov_info_romance, mov_info_horror=mov_info_horror,
-                               mov_info_ani=mov_info_ani, pages=pages, data_to_show=data_to_show)
+                               mov_info_ani=mov_info_ani, pages=pages, data_to_show=data_to_show,len_to_show=len_to_show)
 
 @app.route('/wsearch',methods=['GET','POST'])
 def catalogWS():
@@ -201,6 +201,45 @@ def details(mov_code):
     return render_template('details.html', mov_info_details=mov_info_details, mov_score_cinema=mov_score_cinema,
                            mov_score_naver=mov_score_naver, mov_score_mega=mov_score_mega, url=url)
 
+@app.route('/catalog3')
+def catalog3():
+    with get_db_con() as con:
+        cur = con.cursor()
+
+        mov_info_all = "select * from Mov_info"
+
+        mov_info_all = cur.execute(mov_info_all)
+        mov_info_all = list(mov_info_all.fetchall())
+
+        url = 'http://www.kobis.or.kr/'
+
+        total_all = 'select count(*) from mov_info'
+        total_all = cur.execute(total_all)
+        total_all = int(total_all.fetchone()[0])
+        data_to_show=mov_info_all
+        len_to_show=len(data_to_show)
+        ajax=data_to_show
+        return render_template('catalog3.html', url=url,len_to_show=len_to_show, data_to_show=data_to_show,ajax=ajax)
+
+
+@app.route('/addMovie/<int:page>')
+def ajaxMovie(page):
+    with get_db_con() as con:
+        cur = con.cursor()
+
+        mov_info_all = "select * from Mov_info"
+
+        mov_info_all = cur.execute(mov_info_all)
+        mov_info_all = list(mov_info_all.fetchall())
+
+        url = 'http://www.kobis.or.kr/'
+
+        total_all = 'select count(*) from mov_info'
+        total_all = cur.execute(total_all)
+        total_all = int(total_all.fetchone()[0])
+        data_to_show=mov_info_all
+        ajax=data_to_show[(page-1)*12 :page*12]
+        return render_template('catalog3.html', url=url, ajax=ajax)
 
 '''
 def jsonize(result):
