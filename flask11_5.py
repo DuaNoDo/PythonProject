@@ -2,7 +2,7 @@ import os
 import sqlite3
 from flask import Flask, render_template, request, current_app
 from flask_pager import Pager
-
+import json
 app = Flask(__name__)
 
 app.debug = True
@@ -218,15 +218,16 @@ def catalog3():
         total_all = int(total_all.fetchone()[0])
         data_to_show=mov_info_all
         len_to_show=len(data_to_show)
-        ajaxMovie=data_to_show
-        return render_template('catalog3.html', url=url,len_to_show=len_to_show, data_to_show=data_to_show,ajaxMovie=ajaxMovie)
+        ajaxMovie=data_to_show[0 :12]
+        return render_template('catalog3.html', url=url,len_to_show=len_to_show, data_to_show=data_to_show,ajaxMovie=jsonize(ajaxMovie))
 
-
-@app.route('/addMovie/<int:page>')
-def getajaxMovie(page):
+@app.route('/catalog3/<int:ajaxpage>/')
+@app.route('/catalog3/<int:ajaxpage>')
+def getajaxMovie(ajaxpage):
     with get_db_con() as con:
         cur = con.cursor()
-
+        start=(ajaxpage)*12
+        end=(ajaxpage+1)*12
         mov_info_all = "select * from Mov_info"
 
         mov_info_all = cur.execute(mov_info_all)
@@ -234,18 +235,18 @@ def getajaxMovie(page):
 
         url = 'http://www.kobis.or.kr/'
 
-        total_all = 'select count(*) from mov_info'
-        total_all = cur.execute(total_all)
-        total_all = int(total_all.fetchone()[0])
         data_to_show=mov_info_all
-        ajaxMovie=data_to_show[(page-1)*12 :page*12]
-        return render_template('catalog3.html', url=url, ajaxMovie=ajaxMovie)
+        print(len(data_to_show))
+        ajaxMovie=data_to_show[start :end]
+        print(len(ajaxMovie))
+        print (jsonize(ajaxMovie))
+        return jsonize(ajaxMovie)
 
-'''
+
 def jsonize(result):
-    result_json=json.dumps(list(result.fetchall()),ensure_ascii=False).encode("utf-8")
+    result_json=json.dumps(result,ensure_ascii=False)
     return result_json
-'''
+
 
 if __name__ == "__main__":
     app.run()
