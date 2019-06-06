@@ -49,7 +49,7 @@ def index():
 
         return render_template('index.html', mov_info_all=mov_info_all, url=url, mov_info_action=mov_info_action,
                                mov_info_romance=mov_info_romance, mov_info_horror=mov_info_horror,
-                               mov_info_ani=mov_info_ani )
+                               mov_info_ani=mov_info_ani)
 
 
 @app.route('/catalog' , methods=['POST','GET'])
@@ -236,13 +236,14 @@ def getajaxMovie(ajaxpage):
         url = 'http://www.kobis.or.kr/'
 
         data_to_show=mov_info_all
+
         ajaxMovie=data_to_show[start :end]
 
         return jsonize(ajaxMovie)
 
 
 def jsonize(result):
-    result_json=json.dumps(result,ensure_ascii=False)
+    result_json=json.dumps(result,ensure_ascii=False).encode("utf-8")
     return result_json
 
 
