@@ -30,7 +30,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="Dmitry Volkov">
-    <title>FlixGo – Online Movies, TV Shows & Cinema HTML Template</title>
+    <title>FlixGo</title>
 
 </head>
 <body class="body">
@@ -53,11 +53,8 @@
                             <!-- dropdown -->
                             <li class="header__nav-item">
                                 <a href=/ class="dropdown-toggle header__nav-link" role="button" id="dropdownMenuHome"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">홈</a>
 
-                                <ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuHome">
-
-                                </ul>
                             </li>
                             <!-- end dropdown -->
 
@@ -70,13 +67,6 @@
                             </li>
                             <!-- end dropdown -->
 
-                            <li class="header__nav-item">
-                                <a href="pricing.html" class="header__nav-link">Pricing Plan</a>
-                            </li>
-
-                            <li class="header__nav-item">
-                                <a href="faq.html" class="header__nav-link">Help</a>
-                            </li>
 
                             <!-- dropdown -->
                             <li class="dropdown header__nav-item">
@@ -84,12 +74,6 @@
                                    role="button" id="dropdownMenuMore" data-toggle="dropdown" aria-haspopup="true"
                                    aria-expanded="false"><i class="icon ion-ios-more"></i></a>
 
-                                <ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuMore">
-                                    <li><a href="about.html">About</a></li>
-                                    <li><a href="signin.html">Sign In</a></li>
-                                    <li><a href="signup.html">Sign Up</a></li>
-                                    <li><a href="404.html">404 Page</a></li>
-                                </ul>
                             </li>
                             <!-- end dropdown -->
                         </ul>
@@ -101,10 +85,6 @@
                                 <i class="icon ion-ios-search"></i>
                             </button>
 
-                            <a href="signin.html" class="header__sign-in">
-                                <i class="icon ion-ios-log-in"></i>
-                                <span>sign in</span>
-                            </a>
                         </div>
                         <!-- end header auth -->
 
@@ -127,9 +107,9 @@
             <div class="row">
                 <div class="col-12">
                     <div class="header__search-content">
-                        <input type="text" name="keyword" placeholder="Search for a movie, TV Series that you are looking for">
+                        <input type="text" name="keyword" placeholder="검색어를 입력해주세요.">
 
-                        <button type="submit" >search</button>
+                        <button type="submit" >검색</button>
                     </div>
                 </div>
             </div>
@@ -214,23 +194,20 @@
                     <ul class="nav nav-tabs content__tabs" id="content__tabs" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1"
-                               aria-selected="true">CINEMA</a>
+                               aria-selected="true">네이버</a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2"
-                               aria-selected="false">네이버</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3"
                                aria-selected="false">메가박스</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4"
+                            <a class="nav-link" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3"
                                aria-selected="false">갤러리</a>
                         </li>
+
+
                     </ul>
                     <!-- end content tabs nav -->
 
@@ -246,19 +223,16 @@
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="nav-item"><a class="nav-link active" id="1-tab" data-toggle="tab"
                                                         href="#tab-1" role="tab" aria-controls="tab-1"
-                                                        aria-selected="true">CINAME</a></li>
+                                                        aria-selected="true">네이버</a></li>
 
-                                <li class="nav-item"><a class="nav-link" id="2-tab" data-toggle="tab" href="#tab-2"
+                                <li class="nav-item"><a class="nav-link active" id="2-tab" data-toggle="tab" href="#tab-2"
                                                         role="tab" aria-controls="tab-2"
-                                                        aria-selected="false">네이버</a></li>
+                                                        aria-selected="false">메가박스</a></li>
 
                                 <li class="nav-item"><a class="nav-link" id="3-tab" data-toggle="tab" href="#tab-3"
                                                         role="tab" aria-controls="tab-3"
-                                                        aria-selected="false">메가박스</a></li>
-
-                                <li class="nav-item"><a class="nav-link" id="4-tab" data-toggle="tab" href="#tab-4"
-                                                        role="tab" aria-controls="tab-4"
                                                         aria-selected="false">갤러리</a></li>
+
                             </ul>
                         </div>
                     </div>
@@ -272,78 +246,12 @@
         <div class="row">
             <div class="col-12 col-lg-8 col-xl-8">
 
-                <!-- ========================================= -->
-                <!-- CINEMA TAB START-->
-                <!-- ========================================= -->
-
-                <!-- content tabs -->
-                <div class="tab-content" id="myTabContent">
-
-                    <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="1-tab">
-                        <div class="row">
-                            <!-- reviews -->
-                            <div class="col-12">
-                                <div class="reviews">
-
-
-                                    <ul class="reviews__list">
-                                        <li class="reviews__item">
-                                            <div class="reviews__autor">
-
-                                                <span class="reviews__name">Best Marvel movie in my opinion</span>
-                                                <span class="reviews__time">2018-08-24, 17:53</span>
-
-                                                <span class="reviews__rating"><i
-                                                        class="icon ion-ios-star"></i>8.4</span>
-                                            </div>
-                                            <p class="reviews__text">There are many variations of passages of Lorem
-                                                Ipsum available, but the majority have suffered alteration in some form,
-                                                by injected humour, or randomised words which don't look even slightly
-                                                believable. If you are going to use a passage of Lorem Ipsum, you need
-                                                to be sure there isn't anything embarrassing hidden in the middle of
-                                                text.</p>
-                                            <div class="reviews__actions">
-                                                <div class="reviews__rate">
-                                                    <button type="button"><i class="icon ion-md-thumbs-up"></i>12
-                                                    </button>
-
-                                                    <button type="button">7<i class="icon ion-md-thumbs-down"></i>
-                                                    </button>
-                                                </div>
-
-                                                <button type="button"><i class="icon ion-ios-share-alt"></i>Reply
-                                                </button>
-                                                <button type="button"><i class="icon ion-ios-quote"></i>Quote</button>
-                                            </div>
-                                        </li>
-                                    </ul>
-
-                                    <form action="#" class="form">
-                                        <input type="text" class="form__input" placeholder="Title">
-                                        <textarea class="form__textarea" placeholder="Review"></textarea>
-                                        <div class="form__slider">
-                                            <div class="form__slider-rating" id="slider__rating"></div>
-                                            <div class="form__slider-value" id="form__slider-value"></div>
-                                        </div>
-                                        <button type="button" class="form__btn">Send</button>
-                                    </form>
-
-                                </div>
-                            </div>
-                            <!-- end reviews -->
-                        </div>
-                    </div>
-
-
-                    <!-- ========================================= -->
-                    <!-- CINEMA TAB END-->
-                    <!-- ========================================= -->
 
                     <!-- ========================================= -->
                     <!-- NAVER TAB START-->
                     <!-- ========================================= -->
-
-                    <div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="2-tab">
+                    <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="1-tab">
                         <div class="row">
 
                             <!-- comments -->
@@ -355,15 +263,16 @@
 
                                     {% else %}
 
-                                    {% for i in range(0,4) %}
+                                    {% for i in range(0,mov_score_naver_len) %}
 
                                     <ul class="comments__list">
                                         <li class="comments__item">
 
+
                                             <p class="comments__text">{{mov_score_naver[i][2]}}</p>
                                             <div class="comments__actions">
                                                 <div class="comments__autor">
-                                                    <span class="comments__rating"><i class="icon ion-ios-star"></i>8.4</span>
+                                                    <span class="comments__rating"><i class="icon ion-ios-star"></i>{{mov_score_naver[i][3]}}</span>
 
                                                     <span class="comments__time">{{mov_score_naver[i][5]}}</span>
                                                 </div>
@@ -390,7 +299,7 @@
                     <!-- MEGABOX TAB START-->
                     <!-- ========================================= -->
 
-                    <div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="3-tab">
+                    <div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="2-tab">
                         <div class="row">
 
                             <!-- comments -->
@@ -403,7 +312,7 @@
 
                                     {% else %}
 
-                                    {% for i in range(0,4) %}
+                                    {% for i in range(0,mov_score_mega_len) %}
 
                                     <ul class="comments__list">
                                         <li class="comments__item">
@@ -411,7 +320,7 @@
                                             <p class="comments__text">{{mov_score_mega[i][2]}}</p>
                                            <div class="comments__actions">
                                                 <div class="comments__autor">
-                                                    <span class="comments__rating"><i class="icon ion-ios-star"></i>8.4</span>
+                                                    <span class="comments__rating"><i class="icon ion-ios-star"></i>{{mov_score_mega[i][3]}}</span>
 
                                                     <span class="comments__time">{{mov_score_mega[i][5]}}</span>
                                                 </div>
@@ -434,7 +343,7 @@
                     <!-- ========================================= -->
                     <!-- MEGABOX TAB END-->
                     <!-- ========================================= -->
-                    <div class="tab-pane fade" id="tab-4" role="tabpanel" aria-labelledby="4-tab">
+                    <div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="3-tab">
                         <!-- project gallery -->
                         <div class="gallery" itemscope>
                             <div class="row">
@@ -512,140 +421,7 @@
             </div>
 
             <!-- sidebar -->
-            <div class="col-12 col-lg-4 col-xl-4">
-                <div class="row">
-                    <!-- section title -->
-                    <div class="col-12">
-                        <h2 class="section__title section__title--sidebar">You may also like...</h2>
-                    </div>
-                    <!-- end section title -->
 
-                    <!-- card -->
-                    <div class="col-6 col-sm-4 col-lg-6">
-                        <div class="card">
-                            <div class="card__cover">
-                                <img src="../static/img/covers/cover.jpg" alt="">
-                                <a href="#" class="card__play">
-                                    <i class="icon ion-ios-play"></i>
-                                </a>
-                            </div>
-                            <div class="card__content">
-                                <h3 class="card__title"><a href="#">I Dream in Another Language</a></h3>
-                                <span class="card__category">
-										<a href="#">Action</a>
-										<a href="#">Triler</a>
-									</span>
-                                <span class="card__rate"><i class="icon ion-ios-star"></i>8.4</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end card -->
-
-                    <!-- card -->
-                    <div class="col-6 col-sm-4 col-lg-6">
-                        <div class="card">
-                            <div class="card__cover">
-                                <img src="../static/img/covers/cover2.jpg" alt="">
-                                <a href="#" class="card__play">
-                                    <i class="icon ion-ios-play"></i>
-                                </a>
-                            </div>
-                            <div class="card__content">
-                                <h3 class="card__title"><a href="#">Benched</a></h3>
-                                <span class="card__category">
-										<a href="#">Comedy</a>
-									</span>
-                                <span class="card__rate"><i class="icon ion-ios-star"></i>7.1</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end card -->
-
-                    <!-- card -->
-                    <div class="col-6 col-sm-4 col-lg-6">
-                        <div class="card">
-                            <div class="card__cover">
-                                <img src="../static/img/covers/cover3.jpg" alt="">
-                                <a href="#" class="card__play">
-                                    <i class="icon ion-ios-play"></i>
-                                </a>
-                            </div>
-                            <div class="card__content">
-                                <h3 class="card__title"><a href="#">Whitney</a></h3>
-                                <span class="card__category">
-										<a href="#">Romance</a>
-										<a href="#">Drama</a>
-										<a href="#">Music</a>
-									</span>
-                                <span class="card__rate"><i class="icon ion-ios-star"></i>6.3</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end card -->
-
-                    <!-- card -->
-                    <div class="col-6 col-sm-4 col-lg-6">
-                        <div class="card">
-                            <div class="card__cover">
-                                <img src="../static/img/covers/cover4.jpg" alt="">
-                                <a href="#" class="card__play">
-                                    <i class="icon ion-ios-play"></i>
-                                </a>
-                            </div>
-                            <div class="card__content">
-                                <h3 class="card__title"><a href="#">Blindspotting</a></h3>
-                                <span class="card__category">
-										<a href="#">Comedy</a>
-										<a href="#">Drama</a>
-									</span>
-                                <span class="card__rate"><i class="icon ion-ios-star"></i>7.9</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end card -->
-
-                    <!-- card -->
-                    <div class="col-6 col-sm-4 col-lg-6">
-                        <div class="card">
-                            <div class="card__cover">
-                                <img src="../static/img/covers/cover5.jpg" alt="">
-                                <a href="#" class="card__play">
-                                    <i class="icon ion-ios-play"></i>
-                                </a>
-                            </div>
-                            <div class="card__content">
-                                <h3 class="card__title"><a href="#">I Dream in Another Language</a></h3>
-                                <span class="card__category">
-										<a href="#">Action</a>
-										<a href="#">Triler</a>
-									</span>
-                                <span class="card__rate"><i class="icon ion-ios-star"></i>8.4</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end card -->
-
-                    <!-- card -->
-                    <div class="col-6 col-sm-4 col-lg-6">
-                        <div class="card">
-                            <div class="card__cover">
-                                <img src="../static/img/covers/cover6.jpg" alt="">
-                                <a href="#" class="card__play">
-                                    <i class="icon ion-ios-play"></i>
-                                </a>
-                            </div>
-                            <div class="card__content">
-                                <h3 class="card__title"><a href="#">Benched</a></h3>
-                                <span class="card__category">
-										<a href="#">Comedy</a>
-									</span>
-                                <span class="card__rate"><i class="icon ion-ios-star"></i>7.1</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end card -->
-                </div>
-            </div>
             <!-- end sidebar -->
         </div>
     </div>

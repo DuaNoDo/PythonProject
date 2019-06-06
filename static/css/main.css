@@ -229,17 +229,18 @@ ul {
   justify-content: center;
   align-items: center;
   height: 70px;
-  padding: 0 15px;
-  background-color: #28282d;
+  padding: 0 0 0 15px;
+  background-color: #2b2b31;
   width: 140px;
 }
 .header__logo img {
   width: auto;
   max-width: 110px;
   display: block;
+  margin-left:-70px;
 }
 .header__logo:hover {
-  background-color: #2b2b31;
+  background-color: #28282d;
 }
 .header__nav {
   display: flex;
@@ -1040,6 +1041,7 @@ ul {
   font-weight: 300;
   font-size: 28px;
   margin-bottom: 25px;
+
 }
 .section__title b {
   font-weight: 700;
@@ -2299,6 +2301,7 @@ ul {
   justify-content: flex-start;
   align-items: flex-start;
   padding: 20px 0;
+  margin-right:-50%
 }
 .filter__btn {
   display: flex;
@@ -2320,6 +2323,8 @@ ul {
   text-transform: uppercase;
   font-weight: 500;
   letter-spacing: 1px;
+  font-weight:bold;
+
 }
 .filter__btn:hover {
   opacity: 1;
@@ -2364,8 +2369,9 @@ ul {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 0;
+    padding-left: 3%;
     height: 90px;
+    margin-right:-52%
   }
   .filter__items {
     display: flex;

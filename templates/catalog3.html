@@ -320,9 +320,12 @@
 
 <!-- catalog -->
 <div class="catalog">
+    <input type="button" id="button" value="버튼">
     <div class="container">
-        <div class="row sibling-fade">
-        <input type="button" id="button" value="버튼">
+        <div class="row sibling-fade item">
+
+
+
         </div>
         <!-- paginator -->
         <!--css폴더 밑에 pagingbutton.css-->
@@ -425,41 +428,81 @@
 <script src="../static/js/main.js"></script>
 <script type="text/javascript">
         $(document).ready(function() {
-           page=0
-           alert(page);
+           ajaxpage=0
+           alert(ajaxpage);
            $.ajax({
-              url: 'http://127.0.0.1:5000/addMovie/'+page,
+              url: 'http://127.0.0.1:5000/catalog3/'+ajaxpage,
               success: function(ajaxMovie) {
+              ajaxMovie=JSON.parse(ajaxMovie);
                  for (var i = 0; i < ajaxMovie.length; i++) {
                     $('.item').append(
                        create(
-                          ajaxMovie[i]
+                                ajaxMovie[i][9],
+                                ajaxMovie[i][11],
+                                ajaxMovie[i][0],
+                                ajaxMovie[i][12],
+                                ajaxMovie[i][8],
+                                ajaxMovie[i][2]
                        )
                     );
                  }
               }
            });
-           page++;
+           ajaxpage++;
         });
         $("#button").click(function(e){
-            alert(page);
+            alert(ajaxpage);
             e.preventDefault();
             $.ajax({
-                url: 'http://127.0.0.1:5000/addMovie/'+page,
+                url: 'http://127.0.0.1:5000/catalog3/'+ajaxpage,
                 success: function(ajaxMovie) {
+                ajaxMovie=JSON.parse(ajaxMovie);
                     for (var i = 0; i < ajaxMovie.length; i++) {
                         $('.item').append(
                             create(
-                                ajaxMovie[i]
+                                ajaxMovie[i][9],
+                                ajaxMovie[i][11],
+                                ajaxMovie[i][0],
+                                ajaxMovie[i][12],
+                                ajaxMovie[i][8],
+                                ajaxMovie[i][2]
                             )
                         );
                     }
                 }
             });
-            page++;
+            ajaxpage++;
         });
-        function create(ajaxMovie){
-            return
+        function create(img,code,title,info,cont,date){
+            return `
+            <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+                <div class="card">
+                    <div class="card__cover">
+                        <figure class="snip1384">
+                            <img src="http://www.kobis.or.kr/"${img} alt="">
+                            <a href="/details/${code}">
+                                <figcaption>
+                                    <div class="mov_title">
+                                        <h3 class="card__title">${title}</h3>
+                                    </div>
+                                    <div class="mov_info">
+                                        <p>${info}</p>
+                                    </div>
+                                    <div class="mov_content">
+                                        <i>${cont}</i>
+                                    </div>
+                                    <div class="mov_date">
+                                        <p>${date} 개봉</p>
+                                    </div>
+                                    <div class="mov_score">
+                                        <p class="icon ion-ios-star"> 8.4 / 10</p>
+                                    </div>
+                                </figcaption>
+                             </a>
+                        </figure>
+                    </div>
+                </div>
+            </div>`;
         }
 </script>
 <script>

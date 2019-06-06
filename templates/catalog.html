@@ -36,7 +36,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="Dmitry Volkov">
-    <title>FlixGo – Online Movies, TV Shows & Cinema HTML Template</title>
+    <title>FlixGo</title>
     {% import "_macros.html" as macros %}
 </head>
 <body class="body">
@@ -60,11 +60,6 @@
                             <li class="header__nav-item">
                                 <a class="dropdown-toggle header__nav-link" href="/" role="button" aria-haspopup="true"
                                    aria-expanded="false">홈</a>
-
-                                <ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuHome">
-                                    <li><a href="index.html">Home slideshow bg</a></li>
-                                    <li><a href="index2.html">Home static bg</a></li>
-                                </ul>
                             </li>
                             <!-- end dropdown -->
 
@@ -82,13 +77,6 @@
                             </li>
                             <!-- end dropdown -->
 
-                            <li class="header__nav-item">
-                                <a href="pricing.html" class="header__nav-link">Pricing Plan</a>
-                            </li>
-
-                            <li class="header__nav-item">
-                                <a href="faq.html" class="header__nav-link">Help</a>
-                            </li>
 
                             <!-- dropdown -->
                             <li class="dropdown header__nav-item">
@@ -96,12 +84,6 @@
                                    role="button" id="dropdownMenuMore" data-toggle="dropdown" aria-haspopup="true"
                                    aria-expanded="false"><i class="icon ion-ios-more"></i></a>
 
-                                <ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuMore">
-                                    <li><a href="about.html">About</a></li>
-                                    <li><a href="signin.html">Sign In</a></li>
-                                    <li><a href="signup.html">Sign Up</a></li>
-                                    <li><a href="404.html">404 Page</a></li>
-                                </ul>
                             </li>
                             <!-- end dropdown -->
                         </ul>
@@ -113,10 +95,7 @@
                                 <i class="icon ion-ios-search"></i>
                             </button>
 
-                            <a href="signin.html" class="header__sign-in">
-                                <i class="icon ion-ios-log-in"></i>
-                                <span>sign in</span>
-                            </a>
+
                         </div>
                         <!-- end header auth -->
 
@@ -139,9 +118,9 @@
             <div class="row">
                 <div class="col-12">
                     <div class="header__search-content">
-                        <input type="text" name="keyword" placeholder="Search for a movie, TV Series that you are looking for">
+                        <input type="text" name="keyword" placeholder="검색어를 입력해주세요.">
 
-                        <button type="submit" >search</button>
+                        <button type="submit" >검색</button>
                     </div>
                 </div>
             </div>
@@ -304,7 +283,7 @@
 
                             <!-- filter btn -->
 
-                            <input type="button" onclick="goPost();" class="filter__btn"  value="apply filter">apply filter</input>
+                            <input type="button" onclick="goPost();" class="filter__btn"  value="필터 적용">필터 적용</input>
 
                             <!-- end filter btn -->
 
