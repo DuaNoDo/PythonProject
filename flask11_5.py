@@ -160,9 +160,9 @@ def catalogS():
                 pages = pager.get_pages()
                 skip = (page - 1) * 24
                 data_to_show = mov_info_all[skip: skip + 24]
-                # print(len(data_to_show))
+                len_to_show=len(data_to_show)
                 # print(data_to_show)
-                return render_template('catalog.html', url=url, pages=pages, data_to_show=data_to_show)
+                return render_template('catalog.html', url=url, pages=pages, data_to_show=data_to_show,len_to_show=len_to_show)
 
 
 
@@ -218,12 +218,12 @@ def catalog3():
         total_all = int(total_all.fetchone()[0])
         data_to_show=mov_info_all
         len_to_show=len(data_to_show)
-        ajax=data_to_show
-        return render_template('catalog3.html', url=url,len_to_show=len_to_show, data_to_show=data_to_show,ajax=ajax)
+        ajaxMovie=data_to_show
+        return render_template('catalog3.html', url=url,len_to_show=len_to_show, data_to_show=data_to_show,ajaxMovie=ajaxMovie)
 
 
 @app.route('/addMovie/<int:page>')
-def ajaxMovie(page):
+def getajaxMovie(page):
     with get_db_con() as con:
         cur = con.cursor()
 
@@ -238,8 +238,8 @@ def ajaxMovie(page):
         total_all = cur.execute(total_all)
         total_all = int(total_all.fetchone()[0])
         data_to_show=mov_info_all
-        ajax=data_to_show[(page-1)*12 :page*12]
-        return render_template('catalog3.html', url=url, ajax=ajax)
+        ajaxMovie=data_to_show[(page-1)*12 :page*12]
+        return render_template('catalog3.html', url=url, ajaxMovie=ajaxMovie)
 
 '''
 def jsonize(result):
