@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,10 +7,10 @@
 
     <!-- Font -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600%7CUbuntu:300,400,500,700" rel="stylesheet">
-   <!-- {%- block styles %}
-    &lt;!&ndash; Bootstrap &ndash;&gt;
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.cs" crossorigin="anonymous">
-    {%- endblock styles %}-->
+    <!-- {%- block styles %}
+     &lt;!&ndash; Bootstrap &ndash;&gt;
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.cs" crossorigin="anonymous">
+     {%- endblock styles %}-->
 
     <!-- CSS -->
     <link rel="stylesheet" href="../static/css/pagingbutton.css">
@@ -50,7 +49,7 @@
                     <div class="header__content">
                         <!-- header logo -->
                         <a href="/" class="header__logo">
-                            <img src="../static/img/logo.svg" alt="">
+                            <img src="../static/img/logo.png" alt="">
                         </a>
                         <!-- end header logo -->
 
@@ -120,7 +119,7 @@
                     <div class="header__search-content">
                         <input type="text" name="keyword" placeholder="검색어를 입력해주세요.">
 
-                        <button type="submit" >검색</button>
+                        <button type="submit">검색</button>
                     </div>
                 </div>
             </div>
@@ -153,147 +152,147 @@
 </section>
 <!-- end page title -->
 
-    <!-- filter -->
-    <div class="filter">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <!--<form action="/catalog/search" method="get">
-                        <input type="hidden" value="액션" name="cate">
-                        <input type="submit">
-                    </form>-->
-                    <form action="/catalog/search" method="get">
-                        <div class="filter__content">
-                            <div class="filter__items">
+<!-- filter -->
+<div class="filter">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <!--<form action="/catalog/search" method="get">
+                    <input type="hidden" value="액션" name="cate">
+                    <input type="submit">
+                </form>-->
+                <form action="/catalog/search" method="get">
+                    <div class="filter__content">
+                        <div class="filter__items">
 
-                                <!-- filter item -->
-                                <div class="filter__item" id="filter__genre">
-                                    <span class="filter__item-label">장르:</span>
+                            <!-- filter item -->
+                            <div class="filter__item" id="filter__genre">
+                                <span class="filter__item-label">장르:</span>
 
-                                    <div class="filter__item-btn dropdown-toggle" role="navigation" id="filter-genre"
-                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div class="filter__item-btn dropdown-toggle" role="navigation" id="filter-genre"
+                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                                            <input type="button" value="전체" name="cate" >
+                                    <input type="button" value="전체" name="cate">
 
-                                        <span></span>
-                                    </div>
-
-                                    <ul class="filter__item-menu dropdown-menu scrollbar-dropdown"
-                                        aria-labelledby="filter-genre">
-                                        <li>전체</li>
-                                        <li>액션</li>
-                                        <li>어드벤처</li>
-                                        <li>동물</li>
-                                        <li>애니메이션</li>
-                                        <li>일대기</li>
-                                        <li>코미디</li>
-                                        <li>요리</li>
-                                        <li>댄스</li>
-                                        <li>다큐멘터리</li>
-                                        <li>드라마</li>
-                                        <li>교육</li>
-                                        <li>오락</li>
-                                        <li>판타지</li>
-                                        <li>역사</li>
-                                        <li>공포</li>
-                                        <li>독립</li>
-                                        <li>국제</li>
-                                        <li>아동</li>
-                                        <li>가족</li>
-                                        <li>의학</li>
-                                        <li>군대</li>
-                                        <li>전쟁</li>
-                                        <li>음악</li>
-                                        <li>뮤지컬</li>
-                                        <li>미스터리</li>
-                                        <li>범죄</li>
-                                        <li>자연</li>
-                                        <li>초자연</li>
-                                        <li>정치</li>
-                                        <li>레이싱</li>
-                                        <li>로맨스</li>
-                                        <li>SF</li>
-                                        <li>과학</li>
-                                        <li>여행</li>
-                                        <li>서부</li>
-                                    </ul>
+                                    <span></span>
                                 </div>
-                                <!-- end filter item -->
 
-                                <!-- filter item -->
-                                <div class="filter__item" id="filter__quality">
-                                    <span class="filter__item-label">시간 유형:</span>
-
-                                    <div class="filter__item-btn dropdown-toggle" role="navigation" id="filter-quality"
-                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <input type="button"  value="전체" name="time">
-                                        <span></span>
-                                    </div>
-
-                                    <ul class="filter__item-menu dropdown-menu scrollbar-dropdown"
-                                        aria-labelledby="filter-quality">
-                                        <li>전체</li>
-                                        <li>장편</li>
-                                        <li>단편</li>
-
-                                    </ul>
-                                </div>
-                                <!-- end filter item -->
-
-                                <!-- filter item
-                                <div class="filter__item" id="filter__rate">
-                                    <span class="filter__item-label">평점:</span>
-
-                                    <div class="filter__item-btn dropdown-toggle" role="button" id="filter-rate"
-                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <div class="filter__range">
-                                            <div id="filter__imbd-start"></div>
-                                            <div id="filter__imbd-end"></div>
-                                        </div>
-                                        <span></span>
-                                    </div>
-
-                                    <div class="filter__item-menu filter__item-menu--range dropdown-menu"
-                                         aria-labelledby="filter-rate">
-                                        <div id="filter__imbd"></div>
-                                    </div>
-                                </div>
-                                end filter item -->
-
-                                <!-- filter item -->
-                                <div class="filter__item" id="filter__year">
-                                    <span class="filter__item-label">개봉년도:</span>
-
-                                    <div class="filter__item-btn dropdown-toggle" role="button" id="filter-year"
-                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <div class="filter__range">
-                                            <div id="filter__years-start"></div>
-                                            <div id="filter__years-end"></div>
-                                        </div>
-                                        <span></span>
-                                    </div>
-
-                                    <div class="filter__item-menu filter__item-menu--range dropdown-menu"
-                                         aria-labelledby="filter-year">
-                                        <div id="filter__years"></div>
-                                    </div>
-                                </div>
-                                <!-- end filter item -->
+                                <ul class="filter__item-menu dropdown-menu scrollbar-dropdown"
+                                    aria-labelledby="filter-genre">
+                                    <li>전체</li>
+                                    <li>액션</li>
+                                    <li>어드벤처</li>
+                                    <li>동물</li>
+                                    <li>애니메이션</li>
+                                    <li>일대기</li>
+                                    <li>코미디</li>
+                                    <li>요리</li>
+                                    <li>댄스</li>
+                                    <li>다큐멘터리</li>
+                                    <li>드라마</li>
+                                    <li>교육</li>
+                                    <li>오락</li>
+                                    <li>판타지</li>
+                                    <li>역사</li>
+                                    <li>공포</li>
+                                    <li>독립</li>
+                                    <li>국제</li>
+                                    <li>아동</li>
+                                    <li>가족</li>
+                                    <li>의학</li>
+                                    <li>군대</li>
+                                    <li>전쟁</li>
+                                    <li>음악</li>
+                                    <li>뮤지컬</li>
+                                    <li>미스터리</li>
+                                    <li>범죄</li>
+                                    <li>자연</li>
+                                    <li>초자연</li>
+                                    <li>정치</li>
+                                    <li>레이싱</li>
+                                    <li>로맨스</li>
+                                    <li>SF</li>
+                                    <li>과학</li>
+                                    <li>여행</li>
+                                    <li>서부</li>
+                                </ul>
                             </div>
+                            <!-- end filter item -->
 
-                            <!-- filter btn -->
+                            <!-- filter item -->
+                            <div class="filter__item" id="filter__quality">
+                                <span class="filter__item-label">시간 유형:</span>
 
-                            <input type="button" onclick="goPost();" class="filter__btn"  value="필터 적용">필터 적용</input>
+                                <div class="filter__item-btn dropdown-toggle" role="navigation" id="filter-quality"
+                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <input type="button" value="전체" name="time">
+                                    <span></span>
+                                </div>
 
-                            <!-- end filter btn -->
+                                <ul class="filter__item-menu dropdown-menu scrollbar-dropdown"
+                                    aria-labelledby="filter-quality">
+                                    <li>전체</li>
+                                    <li>장편</li>
+                                    <li>단편</li>
 
+                                </ul>
+                            </div>
+                            <!-- end filter item -->
+
+                            <!-- filter item
+                            <div class="filter__item" id="filter__rate">
+                                <span class="filter__item-label">평점:</span>
+
+                                <div class="filter__item-btn dropdown-toggle" role="button" id="filter-rate"
+                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <div class="filter__range">
+                                        <div id="filter__imbd-start"></div>
+                                        <div id="filter__imbd-end"></div>
+                                    </div>
+                                    <span></span>
+                                </div>
+
+                                <div class="filter__item-menu filter__item-menu--range dropdown-menu"
+                                     aria-labelledby="filter-rate">
+                                    <div id="filter__imbd"></div>
+                                </div>
+                            </div>
+                            end filter item -->
+
+                            <!-- filter item -->
+                            <div class="filter__item" id="filter__year">
+                                <span class="filter__item-label">개봉년도:</span>
+
+                                <div class="filter__item-btn dropdown-toggle" role="button" id="filter-year"
+                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <div class="filter__range">
+                                        <div id="filter__years-start"></div>
+                                        <div id="filter__years-end"></div>
+                                    </div>
+                                    <span></span>
+                                </div>
+
+                                <div class="filter__item-menu filter__item-menu--range dropdown-menu"
+                                     aria-labelledby="filter-year">
+                                    <div id="filter__years"></div>
+                                </div>
+                            </div>
+                            <!-- end filter item -->
                         </div>
-                    </form>
-                </div>
+
+                        <!-- filter btn -->
+
+                        <input type="button" onclick="goPost();" class="filter__btn" value="필터 적용">필터 적용</input>
+
+                        <!-- end filter btn -->
+
+                    </div>
+                </form>
             </div>
         </div>
-
     </div>
+
+</div>
 
 <!-- end filter -->
 
@@ -336,14 +335,13 @@
             {% endfor %}
 
 
-
         </div>
         <!-- paginator -->
         <!--css폴더 밑에 pagingbutton.css-->
-            <div class="col">
-                {{ macros.pagination_widget(pages, 'catalog') }}
-            </div>
-            <!-- end paginator -->
+        <div class="col">
+            {{ macros.pagination_widget(pages, 'catalog') }}
+        </div>
+        <!-- end paginator -->
     </div>
 </div>
 <!-- end catalog -->
@@ -359,7 +357,9 @@
     <div class="container">
         <div class="row">
             <!-- footer list -->
-
+            <a href=/>
+                <img src="../static/img/logo.png" alt="">
+            </a>
             <!-- end footer list -->
 
             <!-- footer list -->
@@ -457,6 +457,7 @@ form.submit();
 
 }
 
+
 </script>
 <script>
     {% block js %}
@@ -466,6 +467,7 @@ form.submit();
   $('#users-url').addClass('active');
   {% endif %}
 {% endblock %}
+
 
 
 </script>

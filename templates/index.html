@@ -44,7 +44,7 @@
                     <div class="header__content">
                         <!-- header logo -->
                         <a href=/ class="header__logo">
-                            <img src="../static/img/logo.svg" alt="">
+                            <img src="../static/img/logo.png" alt="">
                         </a>
                         <!-- end header logo -->
 
@@ -70,14 +70,14 @@
                                 <a class="dropdown-toggle header__nav-link header__nav-link--more" href="#"
                                    role="button" id="dropdownMenuMore" data-toggle="dropdown" aria-haspopup="true"
                                    aria-expanded="false"><i class="icon ion-ios-more"></i></a>
-<!--
-                                <ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuMore">
-                                    <li><a href="about.html">About</a></li>
-                                    <li><a href="signin.html">Sign In</a></li>
-                                    <li><a href="signup.html">Sign Up</a></li>
-                                    <li><a href="404.html">404 Page</a></li>
-                                </ul>
-                                -->
+                                <!--
+                                                                <ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuMore">
+                                                                    <li><a href="about.html">About</a></li>
+                                                                    <li><a href="signin.html">Sign In</a></li>
+                                                                    <li><a href="signup.html">Sign Up</a></li>
+                                                                    <li><a href="404.html">404 Page</a></li>
+                                                                </ul>
+                                                                -->
                             </li>
                             <!-- end dropdown -->
                         </ul>
@@ -88,12 +88,12 @@
                             <button class="header__search-btn" type="button">
                                 <i class="icon ion-ios-search"></i>
                             </button>
-<!--
-                            <a href="signin.html" class="header__sign-in">
-                                <i class="icon ion-ios-log-in"></i>
-                                <span>sign in</span>
-                            </a>
-                            -->
+                            <!--
+                                                        <a href="signin.html" class="header__sign-in">
+                                                            <i class="icon ion-ios-log-in"></i>
+                                                            <span>sign in</span>
+                                                        </a>
+                                                        -->
                         </div>
                         <!-- end header auth -->
 
@@ -118,7 +118,7 @@
                     <div class="header__search-content">
                         <input type="text" name="keyword" placeholder="검색어를 입력하세요.">
 
-                        <button type="submit" >검색</button>
+                        <button type="submit">검색</button>
                     </div>
                 </div>
             </div>
@@ -338,23 +338,25 @@
 
                                 <figure class="snip1384">
                                     <img src={{url}}{{mov_info_romance[i][9]}} alt="">
-                                    <figcaption>
-                                        <div class="mov_title">
-                                            <h3 class="card__title">{{mov_info_romance[i][0]}}</h3>
-                                        </div>
-                                        <div class="mov_info">
-                                            <p>{{mov_info_romance[i][12]}}</p>
-                                        </div>
-                                        <div class="mov_content">
-                                            <i>{{mov_info_romance[i][8]}}</i>
-                                        </div>
-                                        <div class="mov_date">
-                                            <p>{{mov_info_romance[i][2]}} 개봉</p>
-                                        </div>
-                                        <div class="mov_score">
-                                            <p class="icon ion-ios-star"> 8.4 / 10</p>
-                                        </div>
-                                    </figcaption>
+                                    <a href=details/{{mov_info_all[i][11]}}>
+                                        <figcaption>
+                                            <div class="mov_title">
+                                                <h3 class="card__title">{{mov_info_romance[i][0]}}</h3>
+                                            </div>
+                                            <div class="mov_info">
+                                                <p>{{mov_info_romance[i][12]}}</p>
+                                            </div>
+                                            <div class="mov_content">
+                                                <i>{{mov_info_romance[i][8]}}</i>
+                                            </div>
+                                            <div class="mov_date">
+                                                <p>{{mov_info_romance[i][2]}} 개봉</p>
+                                            </div>
+                                            <div class="mov_score">
+                                                <p class="icon ion-ios-star"> 8.4 / 10</p>
+                                            </div>
+                                        </figcaption>
+                                    </a>
 
 
                                 </figure>
@@ -380,23 +382,25 @@
 
                                 <figure class="snip1384">
                                     <img src={{url}}{{mov_info_horror[i][9]}} alt="">
-                                    <figcaption>
-                                        <div class="mov_title">
-                                            <h3 class="card__title">{{mov_info_horror[i][0]}}</h3>
-                                        </div>
-                                        <div class="mov_info">
-                                            <p>{{mov_info_horror[i][12]}}</p>
-                                        </div>
-                                        <div class="mov_content">
-                                            <i>{{mov_info_horror[i][8]}}</i>
-                                        </div>
-                                        <div class="mov_date">
-                                            <p>{{mov_info_horror[i][2]}} 개봉</p>
-                                        </div>
-                                        <div class="mov_score">
-                                            <p class="icon ion-ios-star"> 8.4 / 10</p>
-                                        </div>
-                                    </figcaption>
+                                    <a href=details/{{mov_info_all[i][11]}}>
+                                        <figcaption>
+                                            <div class="mov_title">
+                                                <h3 class="card__title">{{mov_info_horror[i][0]}}</h3>
+                                            </div>
+                                            <div class="mov_info">
+                                                <p>{{mov_info_horror[i][12]}}</p>
+                                            </div>
+                                            <div class="mov_content">
+                                                <i>{{mov_info_horror[i][8]}}</i>
+                                            </div>
+                                            <div class="mov_date">
+                                                <p>{{mov_info_horror[i][2]}} 개봉</p>
+                                            </div>
+                                            <div class="mov_score">
+                                                <p class="icon ion-ios-star"> 8.4 / 10</p>
+                                            </div>
+                                        </figcaption>
+                                    </a>
 
                                 </figure>
 
@@ -420,23 +424,25 @@
                             <div class="card__cover">
                                 <figure class="snip1384">
                                     <img src={{url}}{{mov_info_ani[i][9]}} alt="">
-                                    <figcaption>
-                                        <div class="mov_title">
-                                            <h3 class="card__title">{{mov_info_ani[i][0]}}</h3>
-                                        </div>
-                                        <div class="mov_info">
-                                            <p>{{mov_info_ani[i][12]}}</p>
-                                        </div>
-                                        <div class="mov_content">
-                                            <i>{{mov_info_ani[i][8]}}</i>
-                                        </div>
-                                        <div class="mov_date">
-                                            <p>{{mov_info_ani[i][2]}} 개봉</p>
-                                        </div>
-                                        <div class="mov_score">
-                                            <p class="icon ion-ios-star"> 8.4 / 10</p>
-                                        </div>
-                                    </figcaption>
+                                    <a href=details/{{mov_info_all[i][11]}}>
+                                        <figcaption>
+                                            <div class="mov_title">
+                                                <h3 class="card__title">{{mov_info_ani[i][0]}}</h3>
+                                            </div>
+                                            <div class="mov_info">
+                                                <p>{{mov_info_ani[i][12]}}</p>
+                                            </div>
+                                            <div class="mov_content">
+                                                <i>{{mov_info_ani[i][8]}}</i>
+                                            </div>
+                                            <div class="mov_date">
+                                                <p>{{mov_info_ani[i][2]}} 개봉</p>
+                                            </div>
+                                            <div class="mov_score">
+                                                <p class="icon ion-ios-star"> 8.4 / 10</p>
+                                            </div>
+                                        </figcaption>
+                                    </a>
 
                                 </figure>
 
@@ -479,6 +485,9 @@
     <div class="container">
         <div class="row">
             <!-- footer list -->
+            <a href=/>
+                <img src="../static/img/logo.png" alt="">
+            </a>
             <!-- end footer list -->
             <!-- footer copyright -->
             <div class="col-12">
@@ -581,6 +590,7 @@ var list=0;
                 </div>
             </div>`;
         }
+
 
 </script>
 </body>
