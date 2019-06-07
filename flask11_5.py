@@ -227,8 +227,8 @@ def catalog3():
 def getajaxMovie(ajaxpage):
     with get_db_con() as con:
         cur = con.cursor()
-        start=(ajaxpage)*6
-        end=(ajaxpage+1)*6
+        start=(ajaxpage)*12
+        end=(ajaxpage+1)*12
         mov_info_all = "select * from Mov_info"
 
         mov_info_all = cur.execute(mov_info_all)
@@ -239,7 +239,7 @@ def getajaxMovie(ajaxpage):
         data_to_show=mov_info_all
 
         ajaxMovie=data_to_show[start :end]
-
+        print(len(ajaxMovie))
         return jsonize(ajaxMovie)
 
 

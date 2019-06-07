@@ -462,8 +462,13 @@
 <!-- partners -->
 <section class="section">
     <div class="container">
-        <div class="row">
-
+        <div class="row ajaxitem">
+            <div class="col-12">
+                <h2 class="section__title">Expected premiere</h2>
+            </div>
+        </div>
+        <div class="col-12">
+            <a id="button" class="section__btn">Show more</a>
         </div>
     </div>
 </section>
@@ -474,21 +479,7 @@
     <div class="container">
         <div class="row">
             <!-- footer list -->
-
             <!-- end footer list -->
-
-            <!-- footer list -->
-
-            <!-- end footer list -->
-
-            <!-- footer list -->
-
-            <!-- end footer list -->
-
-            <!-- footer list -->
-
-            <!-- end footer list -->
-
             <!-- footer copyright -->
             <div class="col-12">
                 <div class="footer__copyright">
@@ -519,7 +510,11 @@
 <script src="../static/js/main.js"></script>
 <script type="text/javascript">
 var list=0;
+
         $(document).ready(function() {
+            $('#button').bind('click', function() {
+                $('html, body').animate({scrollTop: $(document).height()}, 2000);
+            });
            ajaxpage=0
            $.ajax({
               url: 'http://127.0.0.1:5000/index/'+ajaxpage,
@@ -527,7 +522,7 @@ var list=0;
               ajaxMovie=JSON.parse(ajaxMovie);
               list=ajaxMovie;
                  for (var i = 0; i < ajaxMovie.length; i++) {
-                    $('.item').append(
+                    $('.ajaxitem').append(
                        create(
                                 ajaxMovie[i][9],
                                 ajaxMovie[i][11],
@@ -548,8 +543,9 @@ var list=0;
                 url: 'http://127.0.0.1:5000/index/'+ajaxpage,
                 success: function(ajaxMovie) {
                 ajaxMovie=JSON.parse(ajaxMovie);
+                list=ajaxMovie;
                     for (var i = 0; i < ajaxMovie.length; i++) {
-                        $('.item').append(
+                        $('.ajaxitem').append(
                             create(
                                 ajaxMovie[i][9],
                                 ajaxMovie[i][11],
@@ -569,28 +565,18 @@ var list=0;
             <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
                 <div class="card">
                     <div class="card__cover">
-                        <figure class="snip1384">
-                            <img src="http://www.kobis.or.kr/"${img} alt="">
-                            <a href="/details/${code}">
-                                <figcaption>
-                                    <div class="mov_title">
-                                        <h3 class="card__title">${title}</h3>
-                                    </div>
-                                    <div class="mov_info">
-                                        <p>${info}</p>
-                                    </div>
-                                    <div class="mov_content">
-                                        <i>${cont}</i>
-                                    </div>
-                                    <div class="mov_date">
-                                        <p>${date} 개봉</p>
-                                    </div>
-                                    <div class="mov_score">
-                                        <p class="icon ion-ios-star"> 8.4 / 10</p>
-                                    </div>
-                                </figcaption>
-                             </a>
-                        </figure>
+                        <img src="http://www.kobis.or.kr/${img}" alt="">
+                        <a href="/details/${code} class="card__play">
+                            <i class="icon ion-ios-play"></i>
+                        </a>
+                    </div>
+                    <div class="card__content">
+                        <h3 class="card__title"><a href="/details/${code}">${title}</a></h3>
+                        <span class="card__category">
+								<a href="/details/${code}">${info}</a>
+								<a href="/details/${code}" style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis; ">${cont}</a>
+							</span>
+                        <span class="card__rate"><i class="icon ion-ios-star"></i>${date} 개봉</span>
                     </div>
                 </div>
             </div>`;
