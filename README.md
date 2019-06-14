@@ -1,10 +1,10 @@
 # CINEMA - PythonProject
 
 
-### 무엇인가요
+## 무엇인가요
 여러 영화의 정보를 모아서 한번에 보여줄 수 있도록 만든  어플리케이션입니다.
 
-### 사용기술
+## 사용기술
 사용 기술로는 Python, Flask, Sqlite3, Scrapy, Selenium, Ajax 입니다.
 
 Python을 통하여 내부 코드 및, 컨트롤러를 작성해주었고
@@ -19,27 +19,28 @@ Sqlite 를 통하여 크롤링 한 데이터를 저장하였고,
 
 Ajax 를 통하여 index 페이지의 동적페이징을 구현하였습니다.
 
-### 사용법
+## 사용법
 
 Python 3.7 , windws10 
 
 
 설치
+
+마이크로소프트 비쥬얼 C+ 을 
 ```bash 
 pip install flask
 pip install scrapy
 pip install selenium
-pip install sqlite3
 pip install pywin32
 ```
 
-Flask 실행
+###Flask 실행
 
 ```bash
 PythonProject> python flask11_5.py
 ```
 
-크롤링 실행
+###크롤링 실행
 
 4개의 크롤러중,  megabox_c와 movie_info 는 셀레니움을 사용하는  크롤러입니다.
 
@@ -47,6 +48,7 @@ http://chromedriver.chromium.org/downloads
 
 크롬 웹드라이버, 혹은 사용하시는 웹 드라이버를 구하시고,
 
+movie.movie의 middleware.py 수정
 아래의 코드의 패스에 웹드라이버 경로를 입력해줘야합니다.
 ```python
 path = '../chromedriver.exe'
