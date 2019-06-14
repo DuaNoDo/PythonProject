@@ -50,40 +50,40 @@ kobis.co.kr 의 크롤링 중, 많은 데이터라서 오류가 난다면,
 movie.movie의 middleware.py 참조
 
 ```python
-        if request.url == 'http://www.kobis.or.kr/kobis/business/mast/mvie/searchMovieList.do':
-            driver.get(request.url)
-            
-            #이부분의 검색 조건을 수정해주거나,
-            driver.find_element_by_xpath('//*[@id="sPrdtYearS"]/option[100]').click()
+if request.url == 'http://www.kobis.or.kr/kobis/business/mast/mvie/searchMovieList.do':
+    driver.get(request.url)
+    
+    #이부분의 검색 조건을 수정해주거나,
+    driver.find_element_by_xpath('//*[@id="sPrdtYearS"]/option[100]').click()
+    driver.implicitly_wait(1000)
+    driver.find_element_by_xpath('//*[@id="sPrdtYearE"]/option[103]').click()
+    driver.implicitly_wait(1000)
+    driver.find_element_by_xpath('//*[@id="searchForm"]/div[1]/div[5]/button[1]').click()
+    driver.implicitly_wait(1000)
+    #이곳 까지 수정.
+    
+    #이곳에서 시작 -종료 페이징을 설정
+    driver.execute_script("goPage('669');return false;")
+    driver.implicitly_wait(1000)
+    page_list = driver.find_element_by_xpath('//*[@id="pagingForm"]/div/ul').find_elements_by_tag_name('li')
+    
+    #이후 범위를 추가적으로 주어서 범위를 제한
+    for i in range(669, 767):
+        print("page :", i)
+        for num in range(1, 10):
+            element = driver.find_element_by_xpath(
+                '//*[@id="content"]/div[4]/table/tbody/tr[' + str(num) + ']/td[1]/span/a')
+            driver.execute_script("arguments[0].click();", element)
             driver.implicitly_wait(1000)
-            driver.find_element_by_xpath('//*[@id="sPrdtYearE"]/option[103]').click()
+    
+            spider.addInfoResponse(
+                HtmlResponse(driver.current_url, body=driver.page_source, encoding='utf-8', request=request))
+    
+            exitel = driver.find_element_by_xpath('/html/body/div[3]/div[1]/div[1]/a[2]/span')
+            driver.execute_script("arguments[0].click();", exitel)
             driver.implicitly_wait(1000)
-            driver.find_element_by_xpath('//*[@id="searchForm"]/div[1]/div[5]/button[1]').click()
-            driver.implicitly_wait(1000)
-            #이곳 까지 수정.
-            
-            #이곳에서 시작 -종료 페이징을 설정
-            driver.execute_script("goPage('669');return false;")
-            driver.implicitly_wait(1000)
-            page_list = driver.find_element_by_xpath('//*[@id="pagingForm"]/div/ul').find_elements_by_tag_name('li')
-            
-            #이후 범위를 추가적으로 주어서 범위를 제한
-            for i in range(669, 767):
-                print("page :", i)
-                for num in range(1, 10):
-                    element = driver.find_element_by_xpath(
-                        '//*[@id="content"]/div[4]/table/tbody/tr[' + str(num) + ']/td[1]/span/a')
-                    driver.execute_script("arguments[0].click();", element)
-                    driver.implicitly_wait(1000)
-
-                    spider.addInfoResponse(
-                        HtmlResponse(driver.current_url, body=driver.page_source, encoding='utf-8', request=request))
-
-                    exitel = driver.find_element_by_xpath('/html/body/div[3]/div[1]/div[1]/a[2]/span')
-                    driver.execute_script("arguments[0].click();", exitel)
-                    driver.implicitly_wait(1000)
-
-                driver.execute_script("goPage('" + str(i + 1) + "');return false;")
-                driver.implicitly_wait(1000)
+    
+        driver.execute_script("goPage('" + str(i + 1) + "');return false;")
+        driver.implicitly_wait(1000)
 
 ```
