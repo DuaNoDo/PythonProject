@@ -44,20 +44,24 @@ PythonProject> python flask11_5.py
 
 4개의 크롤러중,  megabox_c와 movie_info 는 셀레니움을 사용하는  크롤러입니다.
 
+기본적으로 웹드라이버를 넣어놓았지만, 관련 에러가 발생시
+
 http://chromedriver.chromium.org/downloads
 
 크롬 웹드라이버, 혹은 사용하시는 웹 드라이버를 구하시고,
 
-movie.movie의 middleware.py 수정
+PythonProject/movie/movie/middleware.py 수정
 아래의 코드의 패스에 웹드라이버 경로를 입력해줘야합니다.
 ```python
 path = '../chromedriver.exe'
 options = webdriver.ChromeOptions()
 ```
 
+실행 하고 난 이후에
+
 만약 추가적으로 생성되는 웹 페이지가 보기싫으시다면
 
-movie.movie의 middleware.py 수정
+PythonProject/movie/movie/middleware.py 수정
 
 주석된 코드를 풀어주면 될것입니다.
 
