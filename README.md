@@ -70,8 +70,17 @@ options.add_argument('window-size=1200x600')
 
 
 ```bash
-PythonProject\movie\movie> scrapy crawl crawl_name
+PythonProject\movie\movie> scrapy crawl movie_info 
+PythonProject\movie\movie> scrapy crawl naver_c
+PythonProject\movie\movie> scrapy crawl movie_c
+PythonProject\movie\movie> scrapy crawl daum_c
+PythonProject\movie\movie> scrapy crawl megabox_c
 ```
+순서대로 kobis에서 영화정보를 긁는것,
+네이버 영화 크롤
+cgv 크롤
+다음 영화 크롤
+메가박스 크롤 입니다.
 
 kobis.co.kr 의 크롤링 중, 많은 데이터라서 오류가 난다면,
 
