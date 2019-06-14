@@ -6,7 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import sqlite3
 
-path = '/Desktop/PythonProject/chromedriver.exe'
+path = '/chromedriver.exe'
 options = webdriver.ChromeOptions()
 #options.add_argument('headless')
 options.add_argument('window-size=1200x600')
