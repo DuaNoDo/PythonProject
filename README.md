@@ -41,13 +41,39 @@ PythonProject> python flask11_5.py
 
 크롤링 실행
 
+4개의 크롤러중,  megabox_c와 movie_info 는 셀레니움을 사용하는  크롤러입니다.
+
+크롬 웹드라이버, 혹은 사용하시는 웹 드라이버를 구하시고,
+
+아래의 코드의 패스에 웹드라이버 경로를 입력해줘야합니다.
+```python
+path = '../chromedriver.exe'
+options = webdriver.ChromeOptions()
+```
+
+만약 추가적으로 생성되는 웹 페이지가 보기싫으시다면
+
+movie.movie의 middleware.py 수정
+
+주석된 코드를 풀어주면 될것입니다.
+
+```python
+path = '/Desktop/PythonProject/chromedriver.exe'
+options = webdriver.ChromeOptions()
+# 추가적인 페이지 생성
+#options.add_argument('headless')
+options.add_argument('window-size=1200x600')
+
+```
+
+
 ```bash
 PythonProject\movie\movie> scrapy crawl crawl_name
 ```
 
 kobis.co.kr 의 크롤링 중, 많은 데이터라서 오류가 난다면,
 
-movie.movie의 middleware.py 참조
+movie.movie의 middleware.py 수정
 
 ```python
 if request.url == 'http://www.kobis.or.kr/kobis/business/mast/mvie/searchMovieList.do':
