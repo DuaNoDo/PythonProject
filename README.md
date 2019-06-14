@@ -1,5 +1,5 @@
-# CINEMA 
-##PythonProject
+# CINEMA - PythonProject
+
 
 ### 무엇인가요
 여러 영화의 정보를 모아서 한번에 보여줄 수 있도록 만든  어플리케이션입니다.
